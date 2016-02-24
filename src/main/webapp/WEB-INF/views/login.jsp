@@ -13,18 +13,18 @@
 <title>Techy Q&A</title>
 
 <script type="text/javascript"
-	src="<c:url value="js/bootstrap.min.js"/>"></script>
+	src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />"></script>
 
 <link
-	href="<c:url value="css/globalalter.css"/>"
+	href="<c:url value="/resources/css/globalalter.css"/>"
 	rel="stylesheet" type="text/css">
 <link
-	href="<c:url value="css/bootstrap-responsive.min.css" />"
+	href="<c:url value="/resources/css/bootstrap-responsive.min.css" />"
 	rel="stylesheet" type="text/css">
 <link
-	href="<c:url value="css/bootstrap.min.css" />"
+	href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet" type="text/css">
 
 <link
