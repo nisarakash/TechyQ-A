@@ -1,8 +1,10 @@
 package com.journaldev.spring.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.journaldev.spring.model.User;
-
-import antlr.collections.List;
 
 @Repository
 public class userDAO {
@@ -28,14 +28,18 @@ public class userDAO {
 	public User getUser(User user) {
 		@SuppressWarnings("unchecked")
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		//session.beginTransaction();
+		
+		System.out.println("In DAO");
+		System.out.println("Username : "+user.getUsername());
 		Query query = session
-				.createQuery("from user_detail where username = :username and password = :password");
+				.createQuery("from User where username = :username and password = :password");
 		query.setParameter("username", user.getUsername());
 		query.setParameter("password", user.getPassword());
-		List list = (List) query.list();
-		if (list.length() == 1) {
-			return (User) list.elementAt(0);
+		List<User> list = query.list();
+	
+		if (list.size()>= 1) {
+			return (User) list.get(0);
 		}
 		return null;
 	}
@@ -46,7 +50,7 @@ public class userDAO {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("insert into user_details(username, password, first_name,last_name,email) values ("
+				.createQuery("insert into User(username, password, firstName,lastName,email) values ("
 						+ user.getUsername()
 						+ ","
 						+ user.getPassword()
