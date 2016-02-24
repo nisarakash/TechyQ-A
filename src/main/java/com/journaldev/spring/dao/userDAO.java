@@ -45,26 +45,14 @@ public class userDAO {
 	}
 
 	@Transactional
-	public boolean addUser(User user) {
+	public boolean addUser(User u) {
 		@SuppressWarnings("unchecked")
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query query = session
-				.createQuery("insert into User(username, password, firstName,lastName,email) values ("
-						+ user.getUsername()
-						+ ","
-						+ user.getPassword()
-						+ ","
-						+ user.getFirstName()
-						+ ","
-						+ user.getLastName()
-						+ ","
-						+ user.getEmail()					+ ")");
-		int result = query.executeUpdate();
-		if(result > 0 ) {
-			return true;
-		}
-		return false;
+		session.save(u);
+		session.getTransaction().commit();
+        
+		return true;
 	}
 	
 	public void dummyCall() {

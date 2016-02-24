@@ -13,7 +13,6 @@ public class User {
 	
 	@Id
 	@Column(name="username")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String username;
 	@Column(name="password")
 	private String password;
@@ -23,15 +22,48 @@ public class User {
 	private String lastName;
 	@Column(name="email")
 	private String email;
+	@Column(name="middle_name")
+	private String middleName;
+	@Column(name="state")
+	private String state;
+	@Column(name="gender")
+	private String gender;
 
-	public User(String username, String password, String firstName,
-			String lastName, String email) {
+	public User(String username, String password, String firstName, String middleName,
+			String lastName, String email, String gender, String state) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
+		this.middleName = middleName;
 		this.lastName = lastName;
 		this.email = email;
+		this.state = state;
+		this.gender = gender;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public User(){

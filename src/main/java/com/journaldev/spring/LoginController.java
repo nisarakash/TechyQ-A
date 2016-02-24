@@ -28,7 +28,7 @@ public class LoginController {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		User user = dao.getUser(new User(username,password,null,null,null));
+		User user = dao.getUser(new User(username,password,null,null,null,null,null,null));
 		if(user !=null)
 			System.out.println("firstName -=" + user.getFirstName());
 		else {
@@ -38,11 +38,5 @@ public class LoginController {
 
 	}
 	
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signup() {
-
-		return "signup";
-
-	}
-
+	
 }
