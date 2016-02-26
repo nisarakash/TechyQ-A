@@ -30,8 +30,6 @@ public class userDAO {
 		Session session = sessionFactory.openSession();
 		//session.beginTransaction();
 		
-		System.out.println("In DAO");
-		System.out.println("Username : "+user.getUsername());
 		Query query = session
 				.createQuery("from User where username = :username and password = :password");
 		query.setParameter("username", user.getUsername());

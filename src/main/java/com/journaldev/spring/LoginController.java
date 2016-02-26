@@ -31,7 +31,7 @@ public class LoginController {
 		User user = dao.getUser(new User(username,password,null,null,null,null,null,null));
 		if(user !=null){
 			System.out.println("firstName -=" + user.getFirstName());
-			return "home";
+			 return "redirect:/home";
 		}
 		else {
 			System.out.println("not working");

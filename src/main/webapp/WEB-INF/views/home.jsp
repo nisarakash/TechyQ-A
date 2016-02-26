@@ -81,8 +81,8 @@ th {
 	</tr>
 <c:forEach items="${questions}" var="q">
     <tr>
-        <td><a href="url">${q.title}</a></td>
-        <td>${q.date}</td>
+        <td><a href="url">${q.qtitle}</a></td>
+        <td>111</td>
         <td>${q.userName}</td>
     </tr>
 </c:forEach>
