@@ -29,12 +29,15 @@ public class LoginController {
 		String password = request.getParameter("password");
 
 		User user = dao.getUser(new User(username,password,null,null,null,null,null,null));
-		if(user !=null)
+		if(user !=null){
 			System.out.println("firstName -=" + user.getFirstName());
+			return "home";
+		}
 		else {
 			System.out.println("not working");
+			return "login";
 		}
-		return "login";
+		
 
 	}
 	
