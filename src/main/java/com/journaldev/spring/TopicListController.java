@@ -19,42 +19,44 @@ import com.journaldev.spring.service.QuestionService;
 
 @Controller
 public class TopicListController {
-	
+
 	@Autowired
 	QuestionService questionService;
-	
-	@RequestMapping(value="/home")
-	public String showList(ModelMap model) {
+
+	@RequestMapping(value = "/home")
+	public String showList(ModelMap model, HttpServletRequest request) {
 		ArrayList<Question> questions = questionService.getAllQuestions();
 		System.out.println(questions.size());
 		model.addAttribute("questions", questions);
+		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+		model.addAttribute("appName", url);
 		return "home";
 	}
-	
-	@RequestMapping(value="/newtopic",method=RequestMethod.GET)
-	public String addNewTopic(ModelMap model){
+
+	@RequestMapping(value = "/newtopic", method = RequestMethod.GET)
+	public String addNewTopic(ModelMap model) {
 		return "newtopic";
 	}
-	
-	@RequestMapping(value="/addTopic",method=RequestMethod.POST)
-	public String createNewTopic(HttpServletRequest request){
-		Question  q = new Question();
-		String username= "abc";
+
+	@RequestMapping(value = "/addTopic", method = RequestMethod.POST)
+	public String createNewTopic(HttpServletRequest request) {
+		Question q = new Question();
+		String username = "abc";
 		String title = request.getParameter("title");
 		String questionDesc = request.getParameter("desc");
-		System.out.println("Title : "+ title + "ques : "+questionDesc);
+		System.out.println("Title : " + title + "ques : " + questionDesc);
 		q.setQtitle(title);
-		
+
 		q.setQquestion(questionDesc);
 		q.setUserName(username);
 		System.out.println(q.getUserName());
-		Date d =  new java.sql.Date(new java.util.Date().getTime());
+		Date d = new java.sql.Date(new java.util.Date().getTime());
 		q.setQtimestamp(d);
 		System.out.println(q);
-		
-		boolean t=questionService.addQuestion(q);
-		System.out.println(t+"    "+q);
+
+		boolean t = questionService.addQuestion(q);
+		System.out.println(t + "    " + q);
 		return "home";
 	}
-	
+
 }
