@@ -22,7 +22,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 	public List<Question> getAllQuestion() {
 		Session session = this.sessionFactory.getCurrentSession();
 
-		List<Question> questionList = session.createQuery("from Question").list();
+		List<Question> questionList = session.createQuery("from Question order by qtimestamp desc").list();
 		return questionList;
 
 	}

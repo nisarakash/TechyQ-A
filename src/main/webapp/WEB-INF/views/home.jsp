@@ -1,14 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%
-;
-%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<title>SignUp Page</title>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
+<script type="text/javascript"
+	src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" />"></script>
+
+<link
+	href="<c:url value="/resources/css/globalalter.css" />"
+	rel="stylesheet" type="text/css">
+<link
+	href="<c:url value="/resources/css/bootstrap-responsive.min.css" />"
+	rel="stylesheet" type="text/css">
+<link
+	href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css">
+
+<link
+	href="<c:url value="http://teamtreehouse.com/assets/favicon.ico" />"
+	rel="shortcut icon">
+<link
+	href="<c:url value="http://teamtreehouse.com/assets/favicon.ico" />"
+	rel="icon">
+<script type="text/javascript">
+    history.pushState(null, null,window.location.href);
+    window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, window.location.href);
+    });
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
+    </script>
+
 <title>TechQA</title>
 <style>
 table {
@@ -86,7 +119,7 @@ th {
 <c:forEach items="${questions}" var="q">
     <tr>
         <td><a href="url">${q.qtitle}</a></td>
-        <td>${q.qtimestamp.}</td>
+        <td>${q.qtimestamp}</td>
         <td>${q.userName}</td>
     </tr>
 </c:forEach>
