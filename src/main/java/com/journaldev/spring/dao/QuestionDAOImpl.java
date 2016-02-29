@@ -30,5 +30,20 @@ public class QuestionDAOImpl implements QuestionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(question);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getSearchQuestion() {
+		Session session = this.sessionFactory.getCurrentSession();
 
+		List<String> questionList = session.createQuery("SELECT q.qquestion FROM Question q").list();
+		return questionList;
+
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Question> getTopQuestions(List topQuestion) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Question> questionList = session.createQuery("from Question question where question.id IN :list").setParameterList("list", topQuestion).list();
+		return questionList;
+	}
 }

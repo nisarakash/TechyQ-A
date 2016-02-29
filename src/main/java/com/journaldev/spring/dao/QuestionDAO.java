@@ -9,4 +9,6 @@ public interface QuestionDAO {
 
 	public List<Question> getAllQuestion();
 	public void addQuestion(Question question);
+	public List<String> getSearchQuestion();
+	public List<Question> getTopQuestions(List topQuestion);
 }

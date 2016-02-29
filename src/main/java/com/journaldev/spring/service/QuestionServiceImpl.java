@@ -1,13 +1,12 @@
 package com.journaldev.spring.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.journaldev.spring.dao.QuestionDAO;
-import com.journaldev.spring.dao.QuestionDAOImpl;
 import com.journaldev.spring.model.Question;
 
 @Service
@@ -31,5 +30,14 @@ public class QuestionServiceImpl implements QuestionService {
 		questionDAO.addQuestion(q);
 		return true;
 	}
-
+	
+	@Transactional
+	public ArrayList<String> getSearchQuestion() {
+		return (ArrayList<String>) questionDAO.getSearchQuestion();
+	}
+	
+	@Transactional
+	public ArrayList<Question> getTopQuestions(List topQuestion) {
+		return (ArrayList<Question>) questionDAO.getTopQuestions(topQuestion);
+	}
 }

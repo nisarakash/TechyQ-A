@@ -79,11 +79,11 @@ th {
 	<br />
 	<br />
 	<div id="search-box" align="center">
-		<form:form name='search' action="" method='POST' autocomplete='none'>
+		<form name='search' action="question" method='POST' autocomplete='none'>
 			<input type='text' name='topic' align="center">
 			<input type="submit" name="submit" value="Search">
 
-		</form:form>
+		</form>
 		<br> <br> <br>
 	</div>
 	<div align="right">
