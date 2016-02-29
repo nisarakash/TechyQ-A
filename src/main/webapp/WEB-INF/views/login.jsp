@@ -31,6 +31,24 @@
 <link
 	href="<c:url value="//www.teamtreehouse.com/assets/favicon.ico" />"
 	rel="icon">
+
+ <script type="text/javascript">
+ function validate(){
+		var username = document["loginForm"]["username"].value;
+		var password = document["loginForm"]["password"].value;
+		if (username==null || username=="")
+		  {
+		  alert("Please enter username");
+		  return false;
+		  }
+		else if (password==null || password=="")
+			  {
+			  alert("Please enter password");
+			  return false;
+			  }
+	}
+ 
+ </script> 
 </head>
 
 <body>
@@ -48,9 +66,9 @@
 			</c:if> <c:if test="${not empty loggedIn}">
 				<div class="msg">${loggedIn}</div>
 			</c:if></strong>
-		<form:form name='loginForm'
+		<form name='loginForm'
 			action="${pageContext.servletContext.contextPath}/login"
-			method='POST' autocomplete='none'>
+			method='POST' autocomplete='none' onsubmit="return validate()">
 
 			<table>
 				<tr>
@@ -82,7 +100,7 @@
 				</tr>
 			</table>
 
-		</form:form>
+		</form>
 	</div>
 </body>
 </html>

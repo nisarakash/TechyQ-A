@@ -16,6 +16,24 @@
 <link href='resources/css/globalalter.css' rel="stylesheet"
 	type="text/css">
 <title>Start new Topic</title>
+<script type="text/javascript">
+
+function validate(){
+	var title = document["newQues"]["title"].value;
+	var desc = document["newQues"]["desc"].value;
+	if (title==null || title=="")
+	  {
+	  alert("Please enter a Title!");
+	  return false;
+	  }
+	else if (desc==null || desc=="")
+		  {
+		  alert("Please enter a Description!");
+		  return false;
+		  }
+}
+</script>
+
 </head>
 <body>
 	<header id="heading">
@@ -30,9 +48,9 @@
 	</div>
 	<br />
 	<div style="padding-right: 15%;">
-		<form:form action="${pageContext.request.contextPath}/addTopic"
-			method="POST" modelAttribute="Questions" class="form-horizontal"
-			role="form">
+		<form action="${pageContext.request.contextPath}/addTopic"
+			method="POST"  class="form-horizontal"
+			role="form" name="newQues" onsubmit="return validate()">
 			<div class="form-group">
 
 				<label class="col-sm-2 control-label" for="title_id">Title</label>
@@ -62,7 +80,7 @@
 
 			</div>
 
-		</form:form>
+		</form>
 	</div>
 </body>
 </html>
