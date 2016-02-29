@@ -15,6 +15,12 @@ public class LoginController {
 	
 	@Autowired
 	private userDAO dao;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String defaultController() {
+		return "redirect:login";
+
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {

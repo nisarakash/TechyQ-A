@@ -52,11 +52,8 @@ public class TopicListController {
 		System.out.println(q.getUserName());
 		Date d = new java.sql.Date(new java.util.Date().getTime());
 		q.setQtimestamp(d);
-		System.out.println(q);
-
 		boolean t = questionService.addQuestion(q);
-		System.out.println(t + "    " + q);
-		return "home";
+		return "redirect:/home";
 	}
 
 }

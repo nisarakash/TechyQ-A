@@ -1,33 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href='resources/css/globalalter.css' rel="stylesheet"
+	type="text/css">
 <title>Start new Topic</title>
 </head>
 <body>
-<form:form action="${pageContext.request.contextPath}/addTopic" method="POST" >
-	<table>
-		<tr>
-			<td> Title </td>
-			<td> <input type="text" name="title" style="width: 431px;" path="title"/></td>	
-		</tr>
-		<tr>
-			<td text-align="top" > Description</td>
-		</tr>
-		<tr>
-			<td text-align="top" > </td>
-			<td> <input type = "text" name="desc" style="width: 431px; height: 418px;" path="desc"/></td>
-		</tr>	
-		<tr>
-			<td></td>
-			<td align ="center"> <input type="submit" value="Submit"/></td>
-		</tr>	
-	</table>
-	
-</form:form>
+	<header id="heading">
+	<div class="container text-center">
+		<h1>Techy Q&A</h1>
+	</div>
+	</header>
+	<br />
+	<br />
+	<div>
+		<h1 align="center">ADD TOPIC HERE</h1>
+	</div>
+	<br />
+	<div style="padding-right: 15%;">
+		<form:form action="${pageContext.request.contextPath}/addTopic"
+			method="POST" modelAttribute="Questions" class="form-horizontal"
+			role="form">
+			<div class="form-group">
+
+				<label class="col-sm-2 control-label" for="title_id">Title</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" id="title_id" name="title"
+						path="title" />
+				</div>
+
+			</div>
+			<br>
+			<div class="form-group">
+
+				<label class="col-sm-2 control-label" for="desc">Description</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="desc" name="desc" rows="8"
+						path="desc"></textarea>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input class="btn btn-success" type="submit" value="Submit"
+						id="submit"> 
+					<input class="btn btn-cancel" type="button"
+						value="cancel" id="cancel" onclick="window.location.href='${pageContext.request.contextPath}/home'">
+				</div>
+
+			</div>
+
+		</form:form>
+	</div>
 </body>
 </html>

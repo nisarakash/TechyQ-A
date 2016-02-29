@@ -29,7 +29,4 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<welcome-file-list>
-	<welcome-file>persons</welcome-file>
-	</welcome-file-list>
 </web-app>

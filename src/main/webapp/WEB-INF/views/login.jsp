@@ -17,14 +17,12 @@
 <script type="text/javascript"
 	src="<c:url value="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />"></script>
 
-<link
-	href="<c:url value="/resources/css/globalalter.css"/>"
+<link href="<c:url value="/resources/css/globalalter.css"/>"
 	rel="stylesheet" type="text/css">
 <link
 	href="<c:url value="/resources/css/bootstrap-responsive.min.css" />"
 	rel="stylesheet" type="text/css">
-<link
-	href="<c:url value="/resources/css/bootstrap.min.css" />"
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet" type="text/css">
 
 <link
@@ -33,15 +31,6 @@
 <link
 	href="<c:url value="//www.teamtreehouse.com/assets/favicon.ico" />"
 	rel="icon">
-<script type="text/javascript">
-    history.pushState(null, null,window.location.href);
-    window.addEventListener('popstate', function(event) {
-    history.pushState(null, null, window.location.href);
-    });
-    document.addEventListener("contextmenu", function(e){
-        e.preventDefault();
-    }, false);
-    </script>
 </head>
 
 <body>
@@ -72,16 +61,7 @@
 					<td>Password :</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
-				<tr>
 
-					<td align="left"><a href="javascript:;"
-						title="change captcha text" name="imgCaptcha"
-						onclick="document.getElementById('captcha_id').src = '<%=request.getContextPath()%>/login?' + 'imgCaptcha';  return false">
-					</a></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
 
 				<tr>
 					<td></td>
@@ -102,8 +82,6 @@
 				</tr>
 			</table>
 
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
 		</form:form>
 	</div>
 </body>
@@ -112,7 +90,7 @@
 <%
 	request.getSession().setAttribute("isUserLoggedIn", "Not Set");
 	request.getSession().setAttribute("Username", "username");
-	response.setHeader("Cache-Control","no-cache"); 
-	response.setHeader("Pragma","no-cache"); 
-	response.setDateHeader ("Expires", -1);
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", -1);
 %>

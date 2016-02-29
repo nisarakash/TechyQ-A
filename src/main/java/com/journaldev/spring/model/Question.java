@@ -65,4 +65,12 @@ public class Question {
 		this.userName = userName;
 	}
 
+	public int getQid() {
+		return qid;
+	}
+
+	public void setQid(int qid) {
+		this.qid = qid;
+	}
+
 }

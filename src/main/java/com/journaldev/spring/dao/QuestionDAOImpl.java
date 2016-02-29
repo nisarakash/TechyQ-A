@@ -21,8 +21,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 	@SuppressWarnings("unchecked")
 	public List<Question> getAllQuestion() {
 		Session session = this.sessionFactory.getCurrentSession();
-
-		List<Question> questionList = session.createQuery("from Question order by qtimestamp desc").list();
+		List<Question> questionList = session.createQuery("from Question").list();
 		return questionList;
 
 	}
