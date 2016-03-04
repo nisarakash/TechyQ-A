@@ -91,6 +91,7 @@ th {
 			value="Start new Thread" onclick="myFunction('${appName}')">
 		<br> <br>
 	</div>
+	<c:if test="${not empty topquestion}">
 	<table>
 		<tr>
 			<td>Title</td>
@@ -105,6 +106,18 @@ th {
 			</tr>
 		</c:forEach>
 	</table>
+	</c:if>
+	<c:if test="${empty topquestion}">
+    <table>
+		<tr>
+			<td>Title</td>
+			<td>Date</td>
+			<td>Posted By</td>
+		</tr>
+		<tr>
+		<td><b>No results</b></td>
+		</tr>
+    </c:if>
 	<script>
 		function myFunction(appName) {
 			window.location = appName + "/newtopic";

@@ -61,6 +61,8 @@ public class SearchQuestions {
 
 	@RequestMapping(value = "/question", method = RequestMethod.POST)
 	public String questionPrint(ModelMap model,HttpServletRequest request) {
+		try
+		{
 		int count=0;
 		String question = request.getParameter("topic");
 		question = question.toLowerCase();
@@ -68,7 +70,6 @@ public class SearchQuestions {
         ArrayList<String> wordsList = new ArrayList<String>();
         ArrayList<Integer> questionIDList = new ArrayList<Integer>();
         ArrayList<Question> questionList = questionService.getAllQuestions();
-       // question = question.trim().replaceAll("\\question+", " ");
         String[] words = question.split(" ");
         String[] sentence = null;
         String quest = null;
@@ -141,7 +142,12 @@ public class SearchQuestions {
         ArrayList<Question> topQuestion = questionService.getTopQuestions(questionIDList);
         model.addAttribute("topquestion",topQuestion);
         return "searchPage";
-		
+		}
+		catch(Exception e)
+		{
+			model.addAttribute("topquestion",null);
+			return "searchPage";
+		}
 
 	}
 	
