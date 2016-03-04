@@ -129,8 +129,9 @@ public class AnswerController {
 			// Set Subject: header field
 			message.setSubject("Followup Meeting Invitation");
 			String firstname = (String) request.getSession().getAttribute("firstname");
+			String email = (String) request.getSession().getAttribute("email");
 			// Now set the actual message
-			message.setText(firstname +" would like to invite you for the follow up meeting on topic." + "\n \n" + "Date : " + date + "\nTime :" + time +" \nInvitation Link:"
+			message.setText(firstname +"("+email+") would like to invite you for the follow up meeting on topic." + "\n \n" + "Date : " + date + "\nTime :" + time +" \nInvitation Link:"
 					+ meetingUrl);
 
 			// Send message

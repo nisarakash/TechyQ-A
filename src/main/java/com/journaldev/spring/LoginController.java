@@ -43,6 +43,7 @@ public class LoginController {
 		if(user !=null){
 			System.out.println("firstName -=" + user.getFirstName());
 			session.setAttribute("firstname", user.getFirstName());
+			session.setAttribute("email", user.getEmail());
 			 return "redirect:/home";
 		}
 		else {
