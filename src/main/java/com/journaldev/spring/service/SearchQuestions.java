@@ -60,7 +60,7 @@ public class SearchQuestions {
 	}
 
 	@RequestMapping(value = "/question", method = RequestMethod.POST)
-	public void questionPrint(ModelMap model,HttpServletRequest request) {
+	public String questionPrint(ModelMap model,HttpServletRequest request) {
 		int count=0;
 		String question = request.getParameter("topic");
 		question = question.toLowerCase();
@@ -140,19 +140,7 @@ public class SearchQuestions {
         }
         ArrayList<Question> topQuestion = questionService.getTopQuestions(questionIDList);
         model.addAttribute("topquestion",topQuestion);
-        /*while(questionList !=null){
-			if(i==25)
-			{
-			System.out.println(i+"." + questionList.get(i-1));
-			break;
-			}
-			else 
-				
-				{System.out.println(i+"." + questionList.get(i));
-			i++;
-				}
-			// return "redirect:/home";
-		}*/
+        return "searchPage";
 		
 
 	}
