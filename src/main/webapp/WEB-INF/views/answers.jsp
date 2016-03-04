@@ -41,12 +41,16 @@
 		<p class="text-center" style="font-size: 30px;">${question.qtitle}</p>
 		<p class="text-center" style="font-size: 25px;">${question.qquestion}</p>
 		<div>
-			<div class="text-right"
-				style="float: left; width: 55%; margin-top: 10px; margin-bottom: 10px;">
-				<button type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#myModal" onclick="addHit('${question.qid}')">Schedule
-					a Meeting</button>
-			</div>
+			<c:if test="${question.userName == sessionScope.username}">
+				<div class="text-right"
+					style="float: left; width: 55%; margin-top: 10px; margin-bottom: 10px;">
+
+					<button type="button" class="btn btn-info btn-lg"
+						data-toggle="modal" data-target="#myModal"
+						onclick="addHit('${question.qid}')">Schedule a Meeting</button>
+
+				</div>
+			</c:if>
 			<div style="float: right; width: 43%;">
 				<h4 class="text-right">by ${question.userName} on
 					${question.qtimestamp}</h4>
@@ -94,68 +98,82 @@
 
 		</c:forEach>
 	</div>
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
+	<c:if test="${question.userName == sessionScope.username}">
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Meeting Settings</h4>
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Meeting Settings</h4>
+					</div>
+
+					<div class="modal-body" id="modal-body">
+						<form action="${pageContext.request.contextPath}/setMeeting"
+							method="POST" id="meeting-form">
+							<div class="form-group">
+								<label for="date">Date</label> <input name="date" type="date"
+									class="form-control" id="date" id="datepicker">
+							</div>
+							<div class="form-group">
+								<label for="time">Time</label> <input type="time"
+									class="form-control" id="time" name="time"
+									placeholder="Password">
+							</div>
+							<div class="form-group">
+								<label> Select upto seven Users to invite for meeting</label>
+							</div>
+							<!-- <button type="submit" class="btn btn-default">Submit</button> -->
+						</form>
+
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="modalCancel">Close</button>
+						<button type="button" class="btn btn-success"
+							onclick="document.getElementById('meeting-form').submit()">Set
+							Meeting</button>
+
+					</div>
 				</div>
 
-				<div class="modal-body" id="modal-body">
-					<form action="${pageContext.request.contextPath}/setMeeting"
-						method="POST" id="meeting-form">
-						<div class="form-group">
-							<label for="date">Date</label> <input name="date"
-								type="date" class="form-control" id="date" id="datepicker">
-						</div>
-						<div class="form-group">
-							<label for="time">Time</label> <input
-								type="time" class="form-control" id="time" name="time"
-								placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label> Select upto seven Users to invite for meeting</label>
-						</div>
-						<!-- <button type="submit" class="btn btn-default">Submit</button> -->
-					</form>
-					
-				</div>
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success" onclick="document.getElementById('meeting-form').submit()">Set Meeting</button>
-
-				</div>
 			</div>
-
 		</div>
+	</c:if>
 	</div>
-	</div>
+
 	<script type="text/javascript">
 		function addHit(questionId) {
-			$.ajax({
-				type : "POST",
-				url : "getUser",
-				data : "qid="+questionId,
-				success : function(msg) {
+			$
+					.ajax({
+						type : "POST",
+						url : "getUser",
+						data : "qid=" + questionId,
+						success : function(msg) {
 
-					var username = msg.split(",");
-					for (var i = 0; i < username.length; i++) {
-						var userInfo = username[i].split(":");
-						var form = document.getElementById("meeting-form");
-						var div = document.createElement("div");
-						div.addClass="checkbox";
-						div.innerHTML = "<label> <input type='checkbox' name='invitees' value='"+userInfo[1]+"''> "+userInfo[0]+" </label>";
-						form.appendChild(div);
+							var username = msg.split(",");
+							for (var i = 0; i < username.length; i++) {
+								var userInfo = username[i].split(":");
+								var form = document
+										.getElementById("meeting-form");
+								var div = document.createElement("div");
+								div.className = "checkbox userCheckbox";
+								div.innerHTML = "<label> <input type='checkbox' name='invitees' value='"+userInfo[1]+"''> "
+										+ userInfo[0] + " </label>";
+								form.appendChild(div);
 
-					}
+							}
 
-				}
-			});
+						}
+					});
 		}
+	</script>
+	<script>
+		$("#modalCancel").click(function() {
+			$(".userCheckbox").remove();
+		});
 	</script>
 </body>
 </html>

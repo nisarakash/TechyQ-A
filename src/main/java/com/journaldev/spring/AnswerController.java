@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.journaldev.spring.model.Answer;
 import com.journaldev.spring.model.QuestionAnswer;
+import com.journaldev.spring.model.User;
 import com.journaldev.spring.service.AnswerService;
 
 @Controller
@@ -31,6 +32,7 @@ public class AnswerController {
 
 	@Autowired
 	AnswerService answerService;
+	User user;
 
 	@RequestMapping(value = "/answers")
 	public String showAnswers(ModelMap model, HttpServletRequest request) {
@@ -47,7 +49,7 @@ public class AnswerController {
 	public String addAnswer(ModelMap model, HttpServletRequest request) {
 		String ans = request.getParameter("answer");
 		String qid = request.getParameter("questionid");
-		String username = "akash";
+		String username = (String) request.getSession().getAttribute("username");
 		Date d = new java.sql.Date(new java.util.Date().getTime());
 
 		Answer answer = new Answer();
@@ -126,9 +128,10 @@ public class AnswerController {
 
 			// Set Subject: header field
 			message.setSubject("Followup Meeting Invitation");
-
+			String firstname = (String) request.getSession().getAttribute("firstname");
+			String email = (String) request.getSession().getAttribute("email");
 			// Now set the actual message
-			message.setText("I would like to invite you for the follow up meeting on topic." + "\n \n" + "Date : " + date + "\nTime :" + time +" \nInvitation Link:"
+			message.setText(firstname +"("+email+") would like to invite you for the follow up meeting on topic." + "\n \n" + "Date : " + date + "\nTime :" + time +" \nInvitation Link:"
 					+ meetingUrl);
 
 			// Send message

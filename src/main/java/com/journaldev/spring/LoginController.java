@@ -1,6 +1,7 @@
 package com.journaldev.spring;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +34,16 @@ public class LoginController {
 	public String login12(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		session.setAttribute("username", username);
+		
+		
 
 		User user = dao.getUser(new User(username,password,null,null,null,null,null,null));
 		if(user !=null){
 			System.out.println("firstName -=" + user.getFirstName());
+			session.setAttribute("firstname", user.getFirstName());
+			session.setAttribute("email", user.getEmail());
 			 return "redirect:/home";
 		}
 		else {
