@@ -42,7 +42,7 @@
 			<beans:list>
 				<beans:value>com.journaldev.spring.model.Person</beans:value>
 				<beans:value>com.journaldev.spring.model.User</beans:value>
-				<beans:value>com.journaldev.spring.model.Questions</beans:value>
+				<beans:value>com.journaldev.spring.model.Question</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -61,13 +61,20 @@
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
+	<beans:bean id="questionDAO" class="com.journaldev.spring.dao.QuestionDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
 	<beans:bean id="personService"
 		class="com.journaldev.spring.service.PersonServiceImpl">
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>
 	<beans:bean id="questionService"
-	    class="com.journaldev.spring.service.QuestionServiceImpl">
+		class="com.journaldev.spring.service.QuestionServiceImpl">
+		<beans:property name="questionDAO" ref="questionDAO"></beans:property>
 	</beans:bean>
+	
+
 	<context:component-scan base-package="com.journaldev.spring" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

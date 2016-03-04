@@ -41,7 +41,7 @@ public class TopicListController {
 	@RequestMapping(value = "/addTopic", method = RequestMethod.POST)
 	public String createNewTopic(HttpServletRequest request) {
 		Question q = new Question();
-		String username = "abc";
+		String username = (String) request.getSession().getAttribute("username");
 		String title = request.getParameter("title");
 		String questionDesc = request.getParameter("desc");
 		System.out.println("Title : " + title + "ques : " + questionDesc);

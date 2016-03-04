@@ -68,6 +68,13 @@ th {
 	background-color: #4CAF50;
 	color: white;
 }
+
+#welcome{
+	font-size:30px;
+	font-family: Comic Sans MS;
+	font-weight: bold;
+	
+}
 </style>
 </head>
 <body>
@@ -75,9 +82,13 @@ th {
 	<div class="container text-center">
 		<h1>Techy Q&A</h1>
 	</div>
+	 
 	</header>
 	<br />
 	<br />
+	<div align="left" id="welcome">
+		Welcome <%= session.getAttribute("firstname") %>
+	</div>
 	<div id="search-box" align="center">
 		<form name='search' action="question" method='POST' autocomplete='none'>
 			<input type='text' name='topic' align="center">
