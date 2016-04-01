@@ -28,8 +28,7 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/techq&amp;a" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/techq&amp;a" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="root" />
 	</beans:bean>
@@ -43,6 +42,8 @@
 				<beans:value>com.journaldev.spring.model.Person</beans:value>
 				<beans:value>com.journaldev.spring.model.User</beans:value>
 				<beans:value>com.journaldev.spring.model.Question</beans:value>
+				<beans:value>com.journaldev.spring.model.Answer</beans:value>
+				<beans:value>com.journaldev.spring.model.Challenge</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -54,6 +55,10 @@
 		</beans:property>
 	</beans:bean>
 	<beans:bean id="personDAO" class="com.journaldev.spring.dao.PersonDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="answerDAO" class="com.journaldev.spring.dao.AnswerDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -73,7 +78,10 @@
 		class="com.journaldev.spring.service.QuestionServiceImpl">
 		<beans:property name="questionDAO" ref="questionDAO"></beans:property>
 	</beans:bean>
-	
+	<beans:bean id="answerService"
+		class="com.journaldev.spring.service.AnswerServiceImpl">
+		<beans:property name="answerDAO" ref="answerDAO"></beans:property>
+	</beans:bean>
 
 	<context:component-scan base-package="com.journaldev.spring" />
 

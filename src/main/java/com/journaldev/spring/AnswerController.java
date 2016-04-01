@@ -84,6 +84,8 @@ public class AnswerController {
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
 		String[] userEmail = request.getParameterValues("invitees");
+		String questionId = request.getParameter("questionId");
+		String questionTitle = request.getParameter("questionTitle");
 
 		SecureRandom random = new SecureRandom();
 		String randomString = new BigInteger(130, random).toString(32);
@@ -131,7 +133,9 @@ public class AnswerController {
 			String firstname = (String) request.getSession().getAttribute("firstname");
 			String email = (String) request.getSession().getAttribute("email");
 			// Now set the actual message
-			message.setText(firstname +"("+email+") would like to invite you for the follow up meeting on topic." + "\n \n" + "Date : " + date + "\nTime :" + time +" \nInvitation Link:"
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			
+			message.setText(firstname +"("+email+") would like to invite you for the follow up meeting on topic: "+questionTitle + "\n \n" + "Date : " + date + "\nTime :" + time +" \nInvitation Link:"
 					+ meetingUrl);
 
 			// Send message
@@ -140,7 +144,7 @@ public class AnswerController {
 		} catch (MessagingException mex) {
 			mex.printStackTrace();
 		}
-		return "answer";
+		return "redirect:answers?qid=" + questionId;
 
 	}
 }
