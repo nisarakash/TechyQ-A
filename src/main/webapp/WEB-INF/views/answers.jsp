@@ -112,9 +112,6 @@
 					<div class="modal-body" id="modal-body">
 						<form action="${pageContext.request.contextPath}/setMeeting"
 							method="POST" id="meeting-form">
-							
-							<input type='hidden' name='questionId' value='${question.qid}' />
-							<input type='hidden' name='questionTitle' value='${question.qtitle}' />
 							<div class="form-group">
 								<label for="date">Date</label> <input name="date" type="date"
 									class="form-control" id="date" id="datepicker">
@@ -135,7 +132,7 @@
 
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="modalCancel">Close</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal"
+						<button type="button" class="btn btn-success"
 							onclick="document.getElementById('meeting-form').submit()">Set
 							Meeting</button>
 
@@ -145,7 +142,6 @@
 			</div>
 		</div>
 	</c:if>
-	
 	</div>
 
 	<script type="text/javascript">
@@ -172,7 +168,6 @@
 
 						}
 					});
-
 		}
 	</script>
 	<script>

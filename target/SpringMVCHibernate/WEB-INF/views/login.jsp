@@ -17,12 +17,14 @@
 <script type="text/javascript"
 	src="<c:url value="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />"></script>
 
-<link href="<c:url value="/resources/css/globalalter.css"/>"
+<link
+	href="<c:url value="/resources/css/globalalter.css"/>"
 	rel="stylesheet" type="text/css">
 <link
 	href="<c:url value="/resources/css/bootstrap-responsive.min.css" />"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+<link
+	href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet" type="text/css">
 
 <link
@@ -31,24 +33,15 @@
 <link
 	href="<c:url value="//www.teamtreehouse.com/assets/favicon.ico" />"
 	rel="icon">
-
- <script type="text/javascript">
- function validate(){
-		var username = document["loginForm"]["username"].value;
-		var password = document["loginForm"]["password"].value;
-		if (username==null || username=="")
-		  {
-		  alert("Please enter username");
-		  return false;
-		  }
-		else if (password==null || password=="")
-			  {
-			  alert("Please enter password");
-			  return false;
-			  }
-	}
- 
- </script> 
+<script type="text/javascript">
+    history.pushState(null, null,window.location.href);
+    window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, window.location.href);
+    });
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
+    </script>
 </head>
 
 <body>
@@ -66,9 +59,9 @@
 			</c:if> <c:if test="${not empty loggedIn}">
 				<div class="msg">${loggedIn}</div>
 			</c:if></strong>
-		<form name='loginForm'
+		<form:form name='loginForm'
 			action="${pageContext.servletContext.contextPath}/login"
-			method='POST' autocomplete='none' onsubmit="return validate()">
+			method='POST' autocomplete='none'>
 
 			<table>
 				<tr>
@@ -79,7 +72,16 @@
 					<td>Password :</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
+				<tr>
 
+					<td align="left"><a href="javascript:;"
+						title="change captcha text" name="imgCaptcha"
+						onclick="document.getElementById('captcha_id').src = '<%=request.getContextPath()%>/login?' + 'imgCaptcha';  return false">
+					</a></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
 
 				<tr>
 					<td></td>
@@ -100,7 +102,9 @@
 				</tr>
 			</table>
 
-		</form>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form:form>
 	</div>
 </body>
 </html>
@@ -108,7 +112,7 @@
 <%
 	request.getSession().setAttribute("isUserLoggedIn", "Not Set");
 	request.getSession().setAttribute("Username", "username");
-	response.setHeader("Cache-Control", "no-cache");
-	response.setHeader("Pragma", "no-cache");
-	response.setDateHeader("Expires", -1);
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Pragma","no-cache"); 
+	response.setDateHeader ("Expires", -1);
 %>
