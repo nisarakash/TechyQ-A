@@ -40,4 +40,16 @@ public class QuestionServiceImpl implements QuestionService {
 	public ArrayList<Question> getTopQuestions(List topQuestion) {
 		return (ArrayList<Question>) questionDAO.getTopQuestions(topQuestion);
 	}
+
+	@Override
+	@Transactional
+	public ArrayList<Question> latestTenQuestion() {
+		return (ArrayList<Question>) questionDAO.latestTenQuestion();
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<Question> getTenHotQuestion() {
+		return (ArrayList<Question>) questionDAO.getTenHotQuestion();
+	}
 }

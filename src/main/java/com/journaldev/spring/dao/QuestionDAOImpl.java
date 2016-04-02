@@ -1,5 +1,6 @@
 package com.journaldev.spring.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -45,5 +46,18 @@ public class QuestionDAOImpl implements QuestionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Question> questionList = session.createQuery("from Question question where question.id IN :list").setParameterList("list", topQuestion).list();
 		return questionList;
+	}
+
+	@Override
+	public List<Question> latestTenQuestion() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Question> questionList = session.createQuery("from Question order by qtimestamp desc").setMaxResults(10).list();
+		return questionList;
+	}
+
+	@Override
+	public List<Question> getTenHotQuestion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

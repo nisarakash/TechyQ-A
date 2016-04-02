@@ -13,4 +13,8 @@ public interface QuestionService {
 	ArrayList<String> getSearchQuestion();
 	
 	ArrayList<Question> getTopQuestions(List topQuestion);
+
+	ArrayList<Question> latestTenQuestion();
+
+	ArrayList<Question> getTenHotQuestion();
 }

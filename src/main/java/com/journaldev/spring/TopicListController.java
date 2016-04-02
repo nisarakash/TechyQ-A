@@ -25,9 +25,17 @@ public class TopicListController {
 
 	@RequestMapping(value = "/home")
 	public String showList(ModelMap model, HttpServletRequest request) {
-		ArrayList<Question> questions = questionService.getAllQuestions();
+		/*ArrayList<Question> questions = questionService.getAllQuestions();
 		System.out.println(questions.size());
 		model.addAttribute("questions", questions);
+		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+		model.addAttribute("appName", url);
+		return "home";*/
+		ArrayList<Question> questions = questionService.latestTenQuestion();
+		System.out.println(questions.size());
+		model.addAttribute("questions", questions);
+		ArrayList<Question> hotQuestions = questionService.getTenHotQuestion();
+		model.addAttribute("hotQuestions", hotQuestions);
 		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		model.addAttribute("appName", url);
 		return "home";

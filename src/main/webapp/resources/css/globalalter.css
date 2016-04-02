@@ -2,9 +2,7 @@
  * designing structure for page content
  * built (with love) using Bootstrap
  */
-body {
-  padding-top: 55px;
-}
+
 
 #navigation {
   display: block;
