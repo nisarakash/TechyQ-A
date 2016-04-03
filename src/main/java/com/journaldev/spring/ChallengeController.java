@@ -8,10 +8,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ChallengeController {
 
 	
-	@RequestMapping(value = "/createChallenge", method = RequestMethod.GET)
+	@RequestMapping(value = "/createChallenges", method = RequestMethod.GET)
 	public String createChallenge() {
 
-		return "createChallenge";
+		return "createChallenges";
+
+	}
+	
+	@RequestMapping(value = "/openChallenges", method = RequestMethod.GET)
+	public String openChallenge() {
+
+		return "openChallenges";
+
+	}
+	
+	@RequestMapping(value = "/reviewChallenges", method = RequestMethod.GET)
+	public String reviewChallenge() {
+		return "challengesUnderReview";
+
+	}
+	
+	@RequestMapping(value = "/closeChallenges", method = RequestMethod.GET)
+	public String closeChallenge() {
+		return "challengesUnderReview";
 
 	}
 }

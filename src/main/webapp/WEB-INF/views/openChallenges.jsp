@@ -23,77 +23,8 @@
 </head>
 <body>
 
-	<!--  Section for Login header -->
-	<nav class="navbar navbar-default"
-		style="margin-bottom:0px; background-color:#fff;">
-	<div class="container-fluid">
-
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">TechyQ&A</a>
-		</div>
-
-
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-
-			<form id="signin" class="navbar-form navbar-right" role="form">
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span> <input id="email"
-						type="email" class="form-control" name="email" value=""
-						placeholder="Email Address">
-				</div>
-
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-lock"></i></span> <input id="password"
-						type="password" class="form-control" name="password" value=""
-						placeholder="Password">
-				</div>
-
-				<button type="submit" class="btn btn-primary">Login</button>
-			</form>
-
-		</div>
-	</div>
-	</nav>
-
-	<!-- Header Image -->
-	<header id="heading">
-	<div class="container text-center">
-		<h1>Techy Q&A</h1>
-	</div>
-	</header>
-
-	<!-- Navigation Bar -->
-	<ul id="myTab" class="nav nav-tabs">
-		<li><a href="home"> Q & A </a></li>
-
-		<li class="active"><a href="#" id="myTabDrop1"
-			class="dropdown-toggle" data-toggle="dropdown"> Challenges <b
-				class="caret"></b>
-		</a>
-
-			<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-				<li><a href="#create" tabindex="-1" data-toggle="tab">Create
-						Challenge</a></li>
-				<li><a href="#open" tabindex="-1" data-toggle="tab">Open
-						Challenges</a></li>
-				<li><a href="#review" tabindex="-1" data-toggle="tab">Challenges
-						Under Review</a></li>
-				<li><a href="#close" tabindex="-1" data-toggle="tab">Closed
-						Challenges</a></li>
-			</ul></li>
-		<li><a href="#seminar" data-toggle="tab">Seminars</a></li>
-
-	</ul>
-
+	<%@ include file="loginLogoHeader.jsp" %>
+	
 	<!-- Section for search box  -->
 	<div class="container" style="margin-top: 20px;">
 		<div class="row">

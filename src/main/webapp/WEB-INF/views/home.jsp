@@ -23,86 +23,15 @@
 <title>TechQA</title>
 </head>
 <body>
-	<!--  Section for Login header -->
-	<nav class="navbar navbar-default"
-		style="margin-bottom:0px; background-color:#fff;">
-	<div class="container-fluid">
-
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">TechyQ&A</a>
-		</div>
-
-
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-
-			<form id="signin" class="navbar-form navbar-right" role="form"
-				name='loginForm'
-				action="${pageContext.servletContext.contextPath}/login"
-				method='POST' autocomplete='none' onsubmit="return validate()">
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span> <input id="email"
-						type="email" class="form-control" name="username" value=""
-						placeholder="Email Address">
-				</div>
-
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-lock"></i></span> <input id="password"
-						type="password" class="form-control" name="password" value=""
-						placeholder="Password">
-				</div>
-
-				<button type="submit" class="btn btn-primary">Login</button>
-			</form>
-
-		</div>
-	</div>
-	</nav>
-
-	<!-- Header Image -->
-	<header id="heading">
-	<div class="container text-center">
-		<h1>Techy Q&A</h1>
-	</div>
-	</header>
-
-
-	<ul id="myTab" class="nav nav-tabs">
-		<li class="active"><a href="home"> Q & A </a></li>
-
-		<li class="dropdown"><a href="#" id="myTabDrop1"
-			class="dropdown-toggle" data-toggle="dropdown"> Challenges <b
-				class="caret"></b>
-		</a>
-
-			<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-				<li><a href="challenges" tabindex="-1">Create Challenge</a></li>
-				<li><a href="openChallenges" tabindex="-1" data-toggle="tab">Open
-						Challenges</a></li>
-				<li><a href="#review" tabindex="-1" data-toggle="tab">Challenges
-						Under Review</a></li>
-				<li><a href="#close" tabindex="-1" data-toggle="tab">Closed
-						Challenges</a></li>
-			</ul></li>
-		<li><a href="#seminar" data-toggle="tab">Seminars</a></li>
-
-	</ul>
-
+	<%@ include file="loginLogoHeader.jsp"%>
 
 	<!-- Section for search box  -->
 	<div class="container" style="margin-top: 20px;">
 		<div class="row">
-			<div class="col-md-12">
-				<div class="input-group" id="adv-search">
+			<div class="col-md-11">
+				<div class="input-group" id="adv-search" style="float: left;">
 					<input type="text" class="form-control" placeholder="Question" />
+
 					<div class="input-group-btn">
 						<div class="btn-group" role="group">
 
@@ -113,79 +42,66 @@
 					</div>
 				</div>
 			</div>
+			<c:if test="${sessionScope.username != null }">
+				<div class="input-group-btn" style="float: right;">
+					<div class="btn-group" role="group">
+						<div>
+							<button type="button" class="btn btn-primary"
+								onclick="myFunction('${appName}')">Start a new Thread</button>
+						</div>
+					</div>
+			</c:if>
 		</div>
 	</div>
+	</div>
 
-	<%-- 
-	<div align="right">
-		<input type="submit" align="right" name="newPost"
-			value="Start new Thread" onclick="myFunction('${appName}')">
-		<br> <br>
-	</div> --%>
-	<%-- <table>
-		<tr>
-			<td>Title</td>
-			<td>Date</td>
-			<td>Posted By</td>
-		</tr>
-		<c:forEach items="${questions}" var="q">
-			<tr>
-				<td><a href="answers?qid=${q.qid}">${q.qtitle}</a></td>
-				<td>${q.qtimestamp}</td>
-				<td>${q.userName}</td>
-			</tr>
-		</c:forEach>
-	</table>
 	<script>
 		function myFunction(appName) {
 			window.location = appName + "/newtopic";
 		}
-	</script> --%>
+	</script>
 
 	<div>
 
 		<div id="content" class="snippet-hidden"
-			style="float: left; width: 70%;">
-			<div id="mainbar" style="margin-left: 10%;">
-				<div class="subheader">
+			style="float: left; width: 60%;">
+			<div id="mainbar" style="margin-left: 10%; width: 100%;">
+				<div class="subheader" style="width: 100%;">
 					<h1>New Questions</h1>
 				</div>
-				<div id="questions" class="content-padding">
+				<div id="questions" class="content-padding" style="width: 100%;">
 					<c:forEach items="${questions}" var="q">
-						<div class="question-summary" id="question-summary-${q.qid}">
-							<div class="statscontainer">
-								<div class="statsarrow"></div>
-								<div class="stats">
-									<div class="vote">
+						<div class="question-summary" id="question-summary-${q.qid}"
+							style="width: 100%;">
+							<div class="statscontainer" style="width: 15%; float: left;">
+								<div class="stats" style="width: 100%;">
+									<div class="vote" style="width: 49%; float: left;">
 										<div class="votes">
 											<span class="vote-count-post "><strong>0</strong></span>
 											<div class="viewcount">votes</div>
 										</div>
 									</div>
-									<div class="status unanswered">
+									<div class="status unanswered"
+										style="width: 49%; float: right;">
 										<strong>0</strong>answers
 									</div>
 								</div>
 							</div>
-							<div class="summary">
-								<h3>
-									<a
-										href="answers?qid=${q.qid}"
-										class="question-hyperlink">${q.qtitle}</a>
-								</h3>
-
-								<div class="started fr">
-									<div class="user-info ">
+							<div class="summary" style="width: 80%; float: right;">
+								<div style="width: 80%; float: left;">
+									<h3>
+										<a href="answers?qid=${q.qid}" class="question-hyperlink">${q.qtitle}</a>
+									</h3>
+								</div>
+								<div class="started fr" style="width: 18%; float: right;">
+									<div class="user-info">
 										<div class="user-action-time">
 											asked on <span>${q.qtimestamp}</span>
 										</div>
 										<div class="user-gravatar32">
 											<span class="glyphicon glyphicon-user"></span>
 										</div>
-										<div class="user-details">
-											${q.userName}
-
-										</div>
+										<div class="user-details">${q.userName}</div>
 									</div>
 								</div>
 							</div>

@@ -27,14 +27,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <title>Insert title here</title>
 <body>
-	<header id="heading">
-	<div class="container text-center">
-		<h1>Techy Q&A</h1>
-	</div>
-	</header>
-	<br />
-	<br />
-
+	<%@ include file="loginLogoHeader.jsp"%>
 
 	<div style="width: 100%; padding-left: 10%; padding-right: 10%;"
 		class="container">
@@ -60,28 +53,31 @@
 	</div>
 	<br />
 	<div style="padding-right: 15%; padding-left: 5%;">
-		<form:form action="${pageContext.request.contextPath}/addAnswer"
-			method="POST" class="form-horizontal" role="form">
+		<c:if test="${sessionScope.username != null }">
+			<form:form action="${pageContext.request.contextPath}/addAnswer"
+				method="POST" class="form-horizontal" role="form">
 
-			<div class="form-group">
+				<div class="form-group">
 
-				<label class="col-sm-2 control-label" for="desc">Write your
-					Answer</label>
-				<div class="col-sm-10">
-					<textarea class="form-control" id="answer" name="answer" rows="4"></textarea>
+					<label class="col-sm-2 control-label" for="desc">Write your
+						Answer</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="answer" name="answer" rows="4"></textarea>
+					</div>
+					<input type='hidden' name='questionid' value='${question.qid}' />
 				</div>
-				<input type='hidden' name='questionid' value='${question.qid}' />
-			</div>
-			<br>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<input class="btn btn-success" type="submit" value="Submit"
-						id="submit">
+				<br>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<input class="btn btn-success" type="submit" value="Submit"
+							id="submit">
+					</div>
+
 				</div>
 
-			</div>
+			</form:form>
+		</c:if>
 
-		</form:form>
 	</div>
 	<br />
 	<div>

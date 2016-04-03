@@ -36,16 +36,20 @@ public class LoginController {
 			System.out.println("firstName -=" + user.getFirstName());
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("email", user.getEmail());
+			session.setAttribute("username", user.getUsername());
 			return "redirect:/home";
 		} else {
 			System.out.println("not working");
+			session.invalidate();
 			return "redirect:/home";
 		}
 
 	}
 
-	@RequestMapping(value = "/test")
+	@RequestMapping(value = "/logout")
 	public String test(HttpServletRequest request) {
-		return "header";
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/home";
 	}
 }
