@@ -52,4 +52,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public ArrayList<Question> getTenHotQuestion() {
 		return (ArrayList<Question>) questionDAO.getTenHotQuestion();
 	}
+
+	@Override
+	@Transactional
+	public ArrayList<Question> getNumberOfAnswerInQuestion() {
+		return (ArrayList<Question>) questionDAO.getNumberOfAnswerInQuestion();
+	}
 }

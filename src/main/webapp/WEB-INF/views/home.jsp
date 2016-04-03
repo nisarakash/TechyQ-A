@@ -73,27 +73,20 @@
 					<c:forEach items="${questions}" var="q">
 						<div class="question-summary" id="question-summary-${q.qid}"
 							style="width: 100%;">
-							<div class="statscontainer" style="width: 15%; float: left;">
+							<div class="statscontainer" style="width: 8%; float: left;">
 								<div class="stats" style="width: 100%;">
-									<div class="vote" style="width: 49%; float: left;">
-										<div class="votes">
-											<span class="vote-count-post "><strong>0</strong></span>
-											<div class="viewcount">votes</div>
-										</div>
-									</div>
-									<div class="status unanswered"
-										style="width: 49%; float: right;">
-										<strong>0</strong>answers
+									<div class="status unanswered" style="width: 100%;">
+										<strong>${q.numberOfAnswers }</strong>answers
 									</div>
 								</div>
 							</div>
-							<div class="summary" style="width: 80%; float: right;">
-								<div style="width: 80%; float: left;">
+							<div class="summary" style="width: 90%; float: right;">
+								<div style="width: 82%; float: left;">
 									<h3>
 										<a href="answers?qid=${q.qid}" class="question-hyperlink">${q.qtitle}</a>
 									</h3>
 								</div>
-								<div class="started fr" style="width: 18%; float: right;">
+								<div class="started fr" style="width: 16%; float: right;">
 									<div class="user-info">
 										<div class="user-action-time">
 											asked on <span>${q.qtimestamp}</span>
@@ -114,17 +107,15 @@
 
 		<div id="hot-network-questions" class="module"
 			style="float: right; margin-top: 30px; width: 28%;">
-			<h4>Hot Network Questions</h4>
+			<h4>Hot Questions</h4>
 			<ul>
-				<li>
-					<div class="favicon favicon-superuser" title="Super User"></div> <a
-					href="http://superuser.com/questions/1058943/tiny-copper-waffle-squares-inside-computer"
-					class="js-gps-track"
-					data-gps-track="site.switch({ item_type:9, target_site:3 }); posts_hot_network.click({ item_type:2, location:9 })">
-						Tiny copper waffle squares inside computer </a>
+				<c:forEach items="${hotQuestions}" var="q">
+					<li>
+						<div class="favicon favicon-superuser" title="Super User"></div> <a
+						href="answers?qid=${q.qid}"> ${q.qtitle } </a>
 
-				</li>
-
+					</li>
+				</c:forEach>
 			</ul>
 
 

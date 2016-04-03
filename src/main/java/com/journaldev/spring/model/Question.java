@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "questions")
@@ -22,7 +23,9 @@ public class Question {
 	private Date qtimestamp;
 	@Column(name = "username")
 	private String userName;
-
+	@Transient
+	private int numberOfAnswers;
+	
 	public Question() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -71,6 +74,14 @@ public class Question {
 
 	public void setQid(int qid) {
 		this.qid = qid;
+	}
+
+	public int getNumberOfAnswers() {
+		return numberOfAnswers;
+	}
+
+	public void setNumberOfAnswers(int numberOfAnswers) {
+		this.numberOfAnswers = numberOfAnswers;
 	}
 
 }

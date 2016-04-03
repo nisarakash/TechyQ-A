@@ -25,18 +25,26 @@ public class TopicListController {
 
 	@RequestMapping(value = "/home")
 	public String showList(ModelMap model, HttpServletRequest request) {
-		/*ArrayList<Question> questions = questionService.getAllQuestions();
-		System.out.println(questions.size());
-		model.addAttribute("questions", questions);
-		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-		model.addAttribute("appName", url);
-		return "home";*/
 		ArrayList<Question> questions = questionService.latestTenQuestion();
-		System.out.println(questions.size());
-		model.addAttribute("questions", questions);
+		ArrayList<Question> answerNumber = questionService.getNumberOfAnswerInQuestion();
+		ArrayList<Question> questionsWithNumberOfAnswer = new ArrayList<Question>();
+		int i = 0;
+		for (Question q : questions) {
+			Question qq = new Question();
+			qq.setQid(q.getQid());
+			qq.setNumberOfAnswers(answerNumber.get(i).getNumberOfAnswers());
+			qq.setQquestion(qq.getQquestion());
+			qq.setQtimestamp(q.getQtimestamp());
+			qq.setQtitle(q.getQtitle());
+			qq.setUserName(q.getUserName());
+			questionsWithNumberOfAnswer.add(qq);
+			i++;
+		}
+		model.addAttribute("questions", questionsWithNumberOfAnswer);
 		ArrayList<Question> hotQuestions = questionService.getTenHotQuestion();
 		model.addAttribute("hotQuestions", hotQuestions);
-		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath();
 		model.addAttribute("appName", url);
 		return "home";
 	}

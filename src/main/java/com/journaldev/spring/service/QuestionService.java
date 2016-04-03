@@ -17,4 +17,6 @@ public interface QuestionService {
 	ArrayList<Question> latestTenQuestion();
 
 	ArrayList<Question> getTenHotQuestion();
+	
+	ArrayList<Question> getNumberOfAnswerInQuestion();
 }

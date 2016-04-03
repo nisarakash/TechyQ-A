@@ -14,4 +14,5 @@ public interface QuestionDAO {
 	public List<Question> getTopQuestions(List topQuestion);
 	public List<Question> latestTenQuestion();
 	public List<Question> getTenHotQuestion();
+	public List<Question> getNumberOfAnswerInQuestion();
 }
