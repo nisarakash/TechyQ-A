@@ -1,6 +1,8 @@
 package com.journaldev.spring.model;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +20,10 @@ public class Challenge {
 	private String hostUser;
 	@Column(name = "opponent_user")
 	private String opponentUser;
-	@Column(name = "oints")
+	@Column(name = "points")
 	private int points;
+	@Column(name = "title")
+	private String title;
 	@Column(name = "question")
 	private String question;
 	@Column(name = "challenge_start_time")
@@ -70,6 +74,12 @@ public class Challenge {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public Date getStartTime() {
 		return startTime;
 	}
@@ -105,6 +115,17 @@ public class Challenge {
 	}
 	public void setWinner(String winner) {
 		this.winner = winner;
+	}
+
+	@Override
+	public String toString() {
+		return "Challenge [challengeID=" + challengeID + ", hostUser="
+				+ hostUser + ", opponentUser=" + opponentUser + ", points="
+				+ points + ", title=" + title + ", question=" + question
+				+ ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", challengeStatus=" + challengeStatus + ", hostAnswer="
+				+ hostAnswer + ", opponentAnswer=" + opponentAnswer
+				+ ", winner=" + winner + "]";
 	}
 	
 	

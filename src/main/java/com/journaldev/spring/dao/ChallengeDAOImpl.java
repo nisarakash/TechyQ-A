@@ -46,4 +46,14 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 		return listChallenge;
 	}
 
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Challenge> getOpenChallenges() {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Challenge> listChallenge = session.createQuery("from Challenge where challengeStatus=0").list();
+		return listChallenge;
+	}
+
 }

@@ -54,13 +54,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${questions}" var="q">
+			<c:forEach items="${openChallenge}" var="oc">
 				<tr>
-					<td><a href="challengeq?qid=${q.qid}">${q.qtitle}</a></td>
-					<td style="width: 70%;">${q.qtimestamp}</td>
-					<td style="width: 10%;">${q.userName}</td>
-					<td style="width: 10%;">${q.date}</td>
-					<td style="width: 10%;">${q.points}</td>
+					<td><a href="challengeq?challengeID=${oc.challengeID}">${oc.title}</a></td>
+					<td style="width: 10%;">${oc.hostUser}</td>
+					<td style="width: 10%;">${oc.startTime}</td>
+					<td style="width: 10%;">${oc.points}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

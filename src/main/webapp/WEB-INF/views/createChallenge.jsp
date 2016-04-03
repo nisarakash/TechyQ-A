@@ -32,7 +32,7 @@
 				<div class="msg">${emptyFields}</div>
 			</c:if></strong>
 		<form name='ChallengeForm'
-			action="${pageContext.servletContext.contextPath}/createChallenge"
+			action="${pageContext.servletContext.contextPath}/addChallenge"
 			method='POST' >
 
 
@@ -40,7 +40,7 @@
 
 				<label class="col-sm-2 control-label" for="title_id">Title</label>
 				<div class="col-sm-10">
-					<input class="form-control" type="text" id="title_id" name="title" />
+					<input class="form-control" type="text" id="title" name="title" />
 				</div>
 			</div>
 			<br>
