@@ -17,7 +17,6 @@
 <link href="<c:url value="/resources/css/globalalter.css"/>"
 	rel="stylesheet" type="text/css">
 
-
 </head>
 <body>
 <header id="heading">

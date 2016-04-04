@@ -98,4 +98,13 @@ public class ChallengeController {
 		return "challengesUnderReview";
 
 	}
+	
+	@RequestMapping(value = "/challengeq", method = RequestMethod.GET)
+	public String openChallengeWithId(ModelMap model, HttpServletRequest request) {
+		int challengeId = Integer.parseInt(request.getParameter("challengeID"));
+		Challenge ch = challengeService.getChallenge(challengeId);
+		model.addAttribute("challenge", ch);
+		return "answerChallenge";
+
+	}
 }

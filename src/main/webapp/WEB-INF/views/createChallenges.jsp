@@ -32,7 +32,7 @@
 			<div class="msg">${emptyFields}</div>
 		</c:if></strong>
 	<form name='ChallengeForm'
-		action="${pageContext.servletContext.contextPath}/createChallenge"
+		action="${pageContext.servletContext.contextPath}/addChallenge"
 		method='POST' class="form-horizontal" role="form"
 		style="margin-left: 0px; margin-right: 0px;">
 
@@ -74,14 +74,14 @@
 				<div class="input-group">
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-danger btn-number"
-							data-type="minus" data-field="quant[2]">
+							data-type="minus" data-field="points">
 							<span class="glyphicon glyphicon-minus"></span>
 						</button>
-					</span> <input type="text" name="quant[2]"
+					</span> <input type="text" name="points"
 						class="form-control input-number" value="30" min="30" max="100"
 						readonly="readonly" style="height: 27px;"> <span class="input-group-btn">
 						<button type="button" class="btn btn-success btn-number"
-							data-type="plus" data-field="quant[2]">
+							data-type="plus" data-field="points">
 							<span class="glyphicon glyphicon-plus"></span>
 						</button>
 					</span>

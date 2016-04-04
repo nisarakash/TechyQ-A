@@ -19,7 +19,8 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href="<c:url value="/resources/css/globalalter.css"/>"
 	rel="stylesheet" type="text/css">
-
+<script
+	src="resources/js/search.js"></script>
 <title>TechQA</title>
 </head>
 <body>
@@ -29,12 +30,12 @@
 		<div class="row">
 			<div class="col-md-11">
 				<div class="input-group" id="adv-search" style="float: left;">
-					<input type="text" class="form-control" placeholder="Question" />
+					<input type="text" class="form-control" placeholder="Question" id="topic"/>
 
 					<div class="input-group-btn">
 						<div class="btn-group" role="group">
 
-							<button type="button" class="btn btn-primary">
+							<button type="button" class="btn btn-primary" onclick="searchQuestion()">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</button>
 						</div>

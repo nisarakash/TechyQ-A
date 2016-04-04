@@ -50,34 +50,29 @@
 
 		<div id="content" class="snippet-hidden"
 			style="float: left; width: 70%;">
-			<div id="mainbar" style="margin-left: 10%;">
-				<div class="subheader">
+			<div id="mainbar" style="margin-left: 10%;width: 100%">
+				<div class="subheader" style="width: 100%;">
 					<h1>Search Questions</h1>
 				</div>
-				<div id="questions" class="content-padding">
-					<c:forEach items="${questions}" var="q">
-						<div class="question-summary" id="question-summary-${q.qid}">
-							<div class="statscontainer">
-								<div class="statsarrow"></div>
-								<div class="stats">
-									<div class="vote">
-										<div class="votes">
-											<span class="vote-count-post "><strong>0</strong></span>
-											<div class="viewcount">votes</div>
-										</div>
-									</div>
-									<div class="status unanswered">
-										<strong>0</strong>answers
+				<div id="questions" class="content-padding" style="width: 100%;">
+					<c:forEach items="${topquestion}" var="q">
+						<div class="question-summary" id="question-summary-${q.qid}"
+							style="width: 100%;">
+							<div class="statscontainer" style="width: 8%; float: left;">
+								<div class="stats" style="width: 100%;">
+									<div class="status unanswered" style="width: 100%;">
+										<strong>${q.numberOfAnswers }</strong>answers
 									</div>
 								</div>
 							</div>
-							<div class="summary">
-								<h3>
-									<a href="answers?qid=${q.qid}" class="question-hyperlink">${q.qtitle}</a>
-								</h3>
-
-								<div class="started fr">
-									<div class="user-info ">
+							<div class="summary" style="width: 90%; float: right;">
+								<div style="width: 82%; float: left;">
+									<h3>
+										<a href="answers?qid=${q.qid}" class="question-hyperlink">${q.qtitle}</a>
+									</h3>
+								</div>
+								<div class="started fr" style="width: 16%; float: right;">
+									<div class="user-info">
 										<div class="user-action-time">
 											asked on <span>${q.qtimestamp}</span>
 										</div>
@@ -95,23 +90,7 @@
 			</div>
 		</div>
 
-		<div id="hot-network-questions" class="module"
-			style="float: right; margin-top: 30px; width: 28%;">
-			<h4>Hot Network Questions</h4>
-			<ul>
-				<li>
-					<div class="favicon favicon-superuser" title="Super User"></div> <a
-					href="http://superuser.com/questions/1058943/tiny-copper-waffle-squares-inside-computer"
-					class="js-gps-track"
-					data-gps-track="site.switch({ item_type:9, target_site:3 }); posts_hot_network.click({ item_type:2, location:9 })">
-						Tiny copper waffle squares inside computer </a>
 
-				</li>
-
-			</ul>
-
-
-		</div>
 	</div>
 </body>
 </html>
