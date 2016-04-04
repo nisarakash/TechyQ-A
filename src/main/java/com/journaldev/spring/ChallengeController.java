@@ -44,22 +44,44 @@ public class ChallengeController {
 	}
 	
 	@RequestMapping(value = "/answerChallenges", method = RequestMethod.GET)
-	public String answerChallenge() {
-
-		return "answerChallenges";
+	public ModelAndView answerChallenge(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		ModelAndView model = new ModelAndView();
+		if(session.getAttribute("username") != null)
+		{
+			model.setViewName("answerChallenges");
+			return model;
+		}
+		else
+		{
+			model.addObject("Request","Please login to enter the challenges. Thanks !!!!");
+			model.setViewName("login");
+			session.invalidate();
+			return model;
+		}
 
 	}
 	
 	
 	@RequestMapping(value = "/openChallenges", method = RequestMethod.GET)
-	public String openChallenge(ModelMap model, HttpServletRequest request) {
-		
-		ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges();
-		model.addAttribute("openChallenge", opechallenges);
-
-		return "openChallenges";
-
+	public ModelAndView openChallenge(ModelMap model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		ModelAndView modelView = new ModelAndView();
+		if(session.getAttribute("username") != null)
+		{
+			modelView.setViewName("openChallenges");
+			ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges();
+			model.addAttribute("openChallenge", opechallenges);
+			return modelView;
+		}
+		else
+		{
+			modelView.setViewName("login");
+			session.invalidate();
+			return modelView;
+		}		
 	}
+	
 	@RequestMapping(value = "/addChallenge", method = RequestMethod.POST)
 	public String addChallenge(ModelMap model, HttpServletRequest request) {
 		String title = request.getParameter("title");
@@ -88,15 +110,38 @@ public class ChallengeController {
 	}
 	
 	@RequestMapping(value = "/reviewChallenges", method = RequestMethod.GET)
-	public String reviewChallenge() {
-		return "challengesUnderReview";
+	public ModelAndView reviewChallenge(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		ModelAndView modelView = new ModelAndView();
+		if(session.getAttribute("username") != null)
+		{
+			modelView.setViewName("challengesUnderReview");
+			return modelView;
+		}
+		else
+		{
+			modelView.setViewName("login");
+			session.invalidate();
+			return modelView;
+		}
 
 	}
 	
 	@RequestMapping(value = "/closeChallenges", method = RequestMethod.GET)
-	public String closeChallenge() {
-		return "challengesUnderReview";
-
+	public ModelAndView closeChallenge(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		ModelAndView modelView = new ModelAndView();
+		if(session.getAttribute("username") != null)
+		{
+			modelView.setViewName("challengesUnderReview");
+			return modelView;
+		}
+		else
+		{
+			modelView.setViewName("login");
+			session.invalidate();
+			return modelView;
+		}
 	}
 	
 	@RequestMapping(value = "/challengeq", method = RequestMethod.GET)

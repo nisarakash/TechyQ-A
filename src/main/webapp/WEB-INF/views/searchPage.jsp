@@ -55,6 +55,9 @@
 					<h1>Search Questions</h1>
 				</div>
 				<div id="questions" class="content-padding" style="width: 100%;">
+				<c:if test="${not empty  Found}">
+				<strong>${Found}</strong>
+				</c:if>
 					<c:forEach items="${topquestion}" var="q">
 						<div class="question-summary" id="question-summary-${q.qid}"
 							style="width: 100%;">

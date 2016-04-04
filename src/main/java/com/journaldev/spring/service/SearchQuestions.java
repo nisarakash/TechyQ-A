@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.journaldev.spring.dao.QuestionDAO;
 import com.journaldev.spring.dao.QuestionDAOImpl;
@@ -63,6 +64,8 @@ public class SearchQuestions {
 	public String questionPrint(ModelMap model,HttpServletRequest request) {
 		int count=0;
 		String question = request.getParameter("topic");
+		if(!question.isEmpty())
+		{
 		question = question.toLowerCase();
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         ArrayList<String> wordsList = new ArrayList<String>();
@@ -138,11 +141,18 @@ public class SearchQuestions {
         {
         	questionIDList.add(entry.getKey());
         }
+        if(questionIDList.size() != 0)
+        {
         ArrayList<Question> topQuestion = questionService.getTopQuestions(questionIDList);
         model.addAttribute("topquestion",topQuestion);
         return "searchPage";
+        }
+        model.addAttribute("Found","No results found");
+        return "searchPage";
 		
 
+	}
+		return "redirect:/home";
 	}
 	
 	

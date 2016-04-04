@@ -4,6 +4,5 @@ function searchQuestion() {
   var form = $('<form action="' + url + '" method="post">' +
     '<input type="text" name="topic" value="' + topic + '" />' +
     '</form>');
-  $('body').append(form);
   form.submit();
 }
