@@ -23,23 +23,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<header id="heading">
-		<div class="container text-center">
-			<h1>Techy Q&A</h1>
-		</div>
-	</header>
-	<br />
+
+	<%@ include file="loginLogoHeader.jsp"%>
 	<div style="width: 100%; padding-left: 10%; padding-right: 10%;"
 		class="container">
-		<p class="text-center" style="font-size: 30px;">${question.qtitle}</p>
-		<p class="text-center" style="font-size: 25px;">${question.qquestion}</p>
+		<p class="text-center" style="font-size: 30px;">${challenge.title}</p>
+		<p class="text-center" style="font-size: 25px;">${challenge.question}</p>
 		<div style="float: right; width: 43%;">
-			<h4 class="text-right">by ${question.userName} on
-					${question.qtimestamp}</h4>
+			<h4 class="text-right">by ${challenge.hostUser} on
+				${challenge.startTime}</h4>
 		</div>
 	</div>
 	<br />
-	
+
 	<div style="padding-right: 15%; padding-left: 5%;">
 		<form:form action="${pageContext.request.contextPath}/addAns"
 			method="POST" class="form-horizontal" role="form">
@@ -58,83 +54,27 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<input class="btn btn-success" type="submit" value="Submit"
 						id="submit">
+					<div style="float: right;">
+					
+						<label class="col-sm-3 control-label" for="points">Points</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text" id="points" name="points"
+								value="${challenge.points}" readonly="readonly" />
+						</div>
+						<!-- <label class="col-sm-2 control-label" for="points">Time Left</label>
+						<div class="col-sm-3">
+							<input class="form-control" type="text" id="points" name="points"
+								readonly="readonly" />
+						</div> -->
+					</div>
 				</div>
+
 
 			</div>
 
 		</form:form>
 	</div>
-	<br />
-	<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <h3> Challenger's Answer</h3>
-<%--           <c:if test="${not empty question.answer2}">
- --%>            <p class="text-center" style="font-size: 25px;">${question.answer1}</p>
-			<div style="float: right; width: 43%;">
-				<h4 class="text-right">by ${question.userName} on
-					${question.qtimestamp}</h4>
-			</div>
-			<div>
-			<button type="button" id="testBtn1" class="btn btn-success glyphicon glyphicon-thumbs-up" onclick="incrCount(this)" >
-    			4
-    		</button>
-			<button type="button" 	id="testBtnDown1" class="btn btn-danger glyphicon glyphicon-thumbs-down" onclick="decrCount(this)">
-			4
-			</button>
-			</div>
-			
-<%-- 			</c:if>
- --%>        </div>
-        <div class="col-lg-6">
-           <h3>Challengee's Answer</h3>
-           <p class="text-center" style="font-size: 25px;">${question.answer2}</p>
-			<div style="float: right; width: 43%;">
-				<h4 class="text-right">by ${question.userName} on
-					${question.qtimestamp}</h4>
-			</div>
-			<div>
-			<button type="button" id="testBtn2" class="btn btn-success glyphicon glyphicon-thumbs-up" 
-			data-loading-text="... " onclick="incrCount(this)" >
-    		0	
-    		</button>
-			<button type="button" 	id="testBtnDown2" class="btn btn-danger glyphicon glyphicon-thumbs-down" onclick="decrCount(this)">
-			0
-			</button>
-			</div>
-						
-        </div>
-    </div>
-</div>
-	
-	
-	<div>
-		<h2 class="col-sm-4" style="padding-left: 10%;">Comments</h2>
-	</div>
-	<div class="container" style="padding-left: 15%">
-		<c:forEach items="${comments}" var="a">
-			<br />
-			<br />
-			<blockquote class="blockquote-reverse">
-				<p>${a.comment}</p>
-				<footer>${a.userName}&nbsp;commented&nbsp;on&nbsp;${a.timeStamp}</footer>
-			</blockquote>
 
-		</c:forEach>
-	</div>
-	
-<script type="text/javascript">
-function incrCount(btn){
-	var cnt = btn.innerHTML;
-	cnt++;
-	btn.innerHTML = ' '+ cnt;
-}
-function decrCount(btn){
-	var cnt = btn.innerHTML;
-	cnt--;
-	btn.innerHTML = ' '+ cnt;
-}
-</script>	
 
 </body>
 </html>
