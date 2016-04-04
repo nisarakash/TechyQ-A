@@ -4,12 +4,15 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.journaldev.spring.model.Challenge;
 import com.journaldev.spring.service.ChallengeService;
@@ -22,10 +25,22 @@ public class ChallengeController {
 
 	
 	@RequestMapping(value = "/createChallenges", method = RequestMethod.GET)
-	public String createChallenge() {
+	public ModelAndView createChallenge(HttpServletRequest request) {
 
-		return "createChallenges";
-
+		HttpSession session = request.getSession();
+		ModelAndView model = new ModelAndView();
+		if(session.getAttribute("username") != null)
+		{
+			model.setViewName("createChallenges");
+			return model;
+		}
+		else
+		{
+			model.addObject("Request","Please login to enter the challenges. Thanks !!!!");
+			model.setViewName("forward:/home");
+			session.invalidate();
+			return model;
+		}
 	}
 	
 	@RequestMapping(value = "/answerChallenges", method = RequestMethod.GET)

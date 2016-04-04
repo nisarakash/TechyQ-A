@@ -24,7 +24,9 @@
 </head>
 <body>
 	<%@ include file="loginLogoHeader.jsp"%>
-
+    <c:if test="${not empty Request}">
+    <c:out value="${Request}"/>
+    </c:if>
 	<!-- Section for search box  -->
 	<div class="container" style="margin-top: 20px;">
 		<div class="row">
