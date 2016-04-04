@@ -24,7 +24,7 @@ public class LoginController {
 	}
 
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login")
 	public String login12(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

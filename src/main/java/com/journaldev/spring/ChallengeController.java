@@ -37,7 +37,7 @@ public class ChallengeController {
 		else
 		{
 			model.addObject("Request","Please login to enter the challenges. Thanks !!!!");
-			model.setViewName("forward:/home");
+			model.setViewName("login");
 			session.invalidate();
 			return model;
 		}
