@@ -10,10 +10,12 @@
 <title>Challenges</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="resources/js/points.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href='resources/css/LoginHeader.css' rel="stylesheet"
 	type="text/css">
+<link href='resources/css/points.css' rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href="<c:url value="/resources/css/globalalter.css"/>"
@@ -23,7 +25,7 @@
 </head>
 <body>
 
-	<%@ include file="loginLogoHeader.jsp" %> 
+	<%@ include file="loginLogoHeader.jsp"%>
 
 	<h2 align="center">Create New Challenge</h2>
 	<strong><c:if test="${not empty emptyFields}">
@@ -68,9 +70,22 @@
 			style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
 
 			<label class="col-sm-2 control-label" for="points">Points</label>
-			<div class="col-sm-9">
-				<input class="form-control" type="text" id="points" name="points"
-					placeholder="Enter Points" />
+			<div class="col-md-2" style="padding-right: 80px;">
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-danger btn-number"
+							data-type="minus" data-field="quant[2]">
+							<span class="glyphicon glyphicon-minus"></span>
+						</button>
+					</span> <input type="text" name="quant[2]"
+						class="form-control input-number" value="30" min="30" max="100"
+						readonly="readonly" style="height: 27px;"> <span class="input-group-btn">
+						<button type="button" class="btn btn-success btn-number"
+							data-type="plus" data-field="quant[2]">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</span>
+				</div>
 			</div>
 		</div>
 		<br>
