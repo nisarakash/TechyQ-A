@@ -65,6 +65,30 @@
 			</div>
 
 		</div>
+	</div>
+	<div class="row" style="padding-right: 5%; padding-left: 5%;">
+		<div class="col-lg-7" style="float: right;">
+			<button type="button" class="btn btn-success"
+				onclick="incrCount(this)">
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			</button>
+
+		</div>
+		<div class="col-lg-7" style="float: right;">
+			<button type="button" class="btn btn-success"
+				onclick="incrCount(this)">
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			</button>
+
+		</div>
+		<div class="col-lg-7" style="float: right;">
+			<button type="button" class="btn btn-success"
+				onclick="incrCount(this)">
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			</button>
+
+		</div>
+
 		<input type='hidden' name='questionid' value='${question.qid}' /> <br>
 
 	</div>

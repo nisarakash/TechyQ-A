@@ -27,9 +27,9 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 	@Override
+	@Transactional
 	public Challenge getChallenge(int challengeID) {
-		// TODO Auto-generated method stub
-		return null;
+		return challengeDAO.getChallenge(challengeID);
 	}
 
 	@Override
