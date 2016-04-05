@@ -46,11 +46,20 @@ public class userDAO {
 	public boolean addUser(User u) {
 		@SuppressWarnings("unchecked")
 		Session session = sessionFactory.openSession();
+		boolean exists = session.createQuery("from User where username= :username")
+                .setParameter("username", u.getUsername())
+                .setMaxResults(1)
+                .uniqueResult() 
+         != null;
+		if(!exists)
+		{
 		session.beginTransaction();
 		session.save(u);
 		session.getTransaction().commit();
-        
 		return true;
+		}
+		else
+			 return false;
 	}
 	
 	public void dummyCall() {

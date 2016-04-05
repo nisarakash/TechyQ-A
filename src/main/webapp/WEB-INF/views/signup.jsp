@@ -51,18 +51,18 @@
 
 	<div>
 		<c:if test="${not empty emptyFields}">
-			<div class="msg">${emptyFields}</div>
+			<div class="msg"><b>${emptyFields}</b></div>
 		</c:if>
 		<c:if test="${not empty ExsistingUser}">
-			<div class="msg">${ExsistingUser}</div>
+			<div class="msg"><b>${ExsistingUser}</b></div>
 		</c:if>
 
 		<c:if test="${not empty Successful}">
-			<div class="msg">${Successful}</div>
+			<div class="msg"><b>${Successful}</b></div>
 		</c:if>
 	</div>
 	<form name='openform'
-		action="${pageContext.servletContext.contextPath}/signup"
+		action="${pageContext.servletContext.contextPath}/Signup"
 		method='POST'>
 		<h2 align="justify">SignUp Form</h2>
 		<table width="700" border="0">
@@ -74,7 +74,7 @@
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input id="password" name="password" type="text"
+					<td><input id="password" name="password" type="password"
 						class="form-control"></td>
 				</tr>
 				<tr>
