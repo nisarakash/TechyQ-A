@@ -15,11 +15,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href='resources/css/globalalter.css' rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="resources/js/search.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -37,18 +33,17 @@
 	<br />
 
 	<div style="padding-right: 5%; padding-left: 5%;">
-
 		<div style="float: left; width: 48%;">
 			<label class="control-label" for="desc">Host Answer</label>
 			<textarea class="form-control" id="answer" name="answer" rows="10"
 				readonly="readonly">${challenge.hostAnswer}</textarea>
 			<br />
-			<div class="col-lg-7" style="float: right;">
+			<!-- <div class="col-lg-7" style="float: right;">
 				<button type="button" class="btn btn-success"
 					onclick="incrCount(this)">
 					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 				</button>
-			</div>
+			</div> -->
 
 		</div>
 		<div style="float: right; width: 48%;">
@@ -56,71 +51,78 @@
 			<textarea class="form-control" id="answer" name="answer" rows="10"
 				readonly="readonly">${challenge.opponentAnswer}</textarea>
 			<br />
-			<div class="col-lg-7" style="float: right;">
+			<!-- <div class="col-lg-7" style="float: right;">
 				<button type="button" class="btn btn-success"
 					onclick="incrCount(this)">
 					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 				</button>
 
-			</div>
+			</div> -->
 
 		</div>
 	</div>
-	<div class="row" style="padding-right: 5%; padding-left: 5%;">
-		<div class="col-lg-7" style="float: right;">
-			<button type="button" class="btn btn-success"
-				onclick="incrCount(this)">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-			</button>
+	<input type="hidden" id="challengeId" value="${challenge.challengeID }" />
+	<div style="width: 100%; padding-left: 5%; padding-right: 5%;"
+		class="container">
+		<div class="col-lg-3" style="width: 38%;">
+			<c:if test="${alreadyVoted == false }">
+				<center>
+					<button type="button" class="btn btn-success btn-lg"
+						onclick="incrCount('host')">
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+					</button>
+				</center>
+			</c:if>
+		</div>
+		<div class="col-lg-4 centered" style="width: 24%;">
+			<center>
+				<div class="form-group">
+					<h4>Time Left:&nbsp;&nbsp;&nbsp;12:12:12</h4>
+				</div>
+			</center>
 
 		</div>
-		<div class="col-lg-7" style="float: right;">
-			<button type="button" class="btn btn-success"
-				onclick="incrCount(this)">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-			</button>
 
+		<div class="col-lg-3 centered" style="width: 38%;">
+			<c:if test="${alreadyVoted == false }">
+				<center>
+					<button type="button" class="btn btn-success btn-lg"
+						onclick="incrCount('opponent')">
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+					</button>
+				</center>
+			</c:if>
 		</div>
-		<div class="col-lg-7" style="float: right;">
-			<button type="button" class="btn btn-success"
-				onclick="incrCount(this)">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-			</button>
-
-		</div>
-
-		<input type='hidden' name='questionid' value='${question.qid}' /> <br>
 
 	</div>
+	<br/><br/>
+	<div style="padding-right: 15%; padding-left: 5%;">
+		<c:if test="${sessionScope.username != null }">
+			<form:form action="${pageContext.request.contextPath}/addComment"
+				method="POST" class="form-horizontal" role="form">
 
-	<!-- <div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-6">
-				<div>
-					<button type="button" id="testBtn1"
-						class="btn btn-success glyphicon glyphicon-thumbs-up"
-						onclick="incrCount(this)">4</button>
-					<button type="button" id="testBtnDown1"
-						class="btn btn-danger glyphicon glyphicon-thumbs-down"
-						onclick="decrCount(this)">4</button>
+				<div class="form-group">
+
+					<label class="col-sm-2 control-label" for="desc">Write your
+						Comment</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="answer" name="comment" rows="4"></textarea>
+					</div>
+					<input type='hidden' name='challengeid' value='${challenge.challengeID}' />
+				</div>
+				<br>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<input class="btn btn-success" type="submit" value="Submit"
+							id="submit">
+					</div>
+
 				</div>
 
-			</div>
-			<div class="col-lg-6">
-				<div>
-					<button type="button" id="testBtn2"
-						class="btn btn-success glyphicon glyphicon-thumbs-up"
-						data-loading-text="... " onclick="incrCount(this)">0</button>
-					<button type="button" id="testBtnDown2"
-						class="btn btn-danger glyphicon glyphicon-thumbs-down"
-						onclick="decrCount(this)">0</button>
-				</div>
+			</form:form>
+		</c:if>
 
-			</div>
-		</div>
 	</div>
- -->
-
 	<div>
 		<h2 class="col-sm-4" style="padding-left: 10%;">Comments</h2>
 	</div>
@@ -129,25 +131,13 @@
 			<br />
 			<br />
 			<blockquote class="blockquote-reverse">
-				<p>${a.comment}</p>
-				<footer>${a.userName}&nbsp;commented&nbsp;on&nbsp;${a.timeStamp}</footer>
+				<p>${a.reviewerComment}</p>
+				<footer>${a.reviewer}&nbsp;commented&nbsp;on&nbsp;${a.timeStamp}</footer>
 			</blockquote>
 
 		</c:forEach>
 	</div>
 
-	<script type="text/javascript">
-		function incrCount(btn) {
-			var cnt = btn.innerHTML;
-			cnt++;
-			btn.innerHTML = ' ' + cnt;
-		}
-		function decrCount(btn) {
-			var cnt = btn.innerHTML;
-			cnt--;
-			btn.innerHTML = ' ' + cnt;
-		}
-	</script>
 
 
 </body>
