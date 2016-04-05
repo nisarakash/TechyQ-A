@@ -50,7 +50,7 @@ public class SignupController {
 		if(user == true){
 			System.out.println("done");
 			modelView.addObject("Successful","Successful Signup");
-			modelView.setViewName("signup");
+			modelView.setViewName("login");
 			return modelView;
 		}
 		else {
