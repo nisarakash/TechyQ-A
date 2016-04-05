@@ -37,6 +37,7 @@ public class SignupController {
 		String email = request.getParameter("email");
 		String gender = request.getParameter("gender");
 		String state = request.getParameter("state");
+		int points=100;
 		if(password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()
 				&& gender.isEmpty() || state.isEmpty())
 		{
@@ -45,7 +46,7 @@ public class SignupController {
 			return modelView;
 		}
 
-		boolean user = dao.addUser(new User(username,password,firstName,middleName,lastName,email,gender,state));
+		boolean user = dao.addUser(new User(username,password,firstName,middleName,lastName,email,gender,state,points));
 		if(user == true){
 			System.out.println("done");
 			modelView.addObject("Successful","Successful Signup");

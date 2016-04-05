@@ -70,7 +70,8 @@ public class ChallengeController {
 		if(session.getAttribute("username") != null)
 		{
 			modelView.setViewName("openChallenges");
-			ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges();
+			int points =(Integer) session.getAttribute("points");
+			ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges(points);
 			model.addAttribute("openChallenge", opechallenges);
 			return modelView;
 		}
@@ -96,7 +97,7 @@ public class ChallengeController {
 		challenge.setQuestion(question);
 		challenge.setHostAnswer(hostAnswer);
 		challenge.setPoints(points);
-		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 		challenge.setStartTime(date);
 		
 		
@@ -149,7 +150,7 @@ public class ChallengeController {
 		int challengeId = Integer.parseInt(request.getParameter("challengeID"));
 		Challenge ch = challengeService.getChallenge(challengeId);
 		model.addAttribute("challenge", ch);
-		return "answerChallenge";
+		return "answerChallenges";
 
 	}
 }

@@ -31,12 +31,13 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.setAttribute("username", username);
 
-		User user = dao.getUser(new User(username, password, null, null, null, null, null, null));
+		User user = dao.getUser(new User(username, password, null, null, null, null, null, null,0));
 		if (user != null) {
 			System.out.println("firstName -=" + user.getFirstName());
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("username", user.getUsername());
+			session.setAttribute("points", user.getPoints());
 			return "redirect:/home";
 		} else {
 			System.out.println("not working");

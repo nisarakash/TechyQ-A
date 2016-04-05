@@ -30,9 +30,11 @@ public class User {
 	private String state;
 	@Column(name="gender")
 	private String gender;
+	@Column(name="points")
+	private int points;
 
 	public User(String username, String password, String firstName, String middleName,
-			String lastName, String email, String gender, String state) {
+			String lastName, String email, String gender, String state,int points) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -42,6 +44,7 @@ public class User {
 		this.email = email;
 		this.state = state;
 		this.gender = gender;
+		this.points=points;
 	}
 
 	public String getMiddleName() {
@@ -112,4 +115,14 @@ public class User {
 		this.email = email;
 	}
 
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	
+	
 }

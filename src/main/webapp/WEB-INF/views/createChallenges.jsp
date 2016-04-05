@@ -77,9 +77,26 @@
 							data-type="minus" data-field="points">
 							<span class="glyphicon glyphicon-minus"></span>
 						</button>
-					</span> <input type="text" name="points"
+					</span>
+					<c:set var="points" value= "${sessionScope.points}"/>
+					<c:choose>
+					<c:when test="${(0 le points) && (points lt 200)}">
+					<input type="text" name="points"
+						class="form-control input-number" value="5" min="5" max="30"
+						readonly="readonly" style="height: 27px;text-align:center;"> <span class="input-group-btn">
+					</c:when>
+					<c:when test="${(200 le points) && (points lt 500)}">
+					<input type="text" name="points"
 						class="form-control input-number" value="30" min="30" max="100"
-						readonly="readonly" style="height: 27px;"> <span class="input-group-btn">
+						readonly="readonly" style="height: 27px;text-align:center;"> <span class="input-group-btn">
+					</c:when>
+					<c:when test="${(500 le points)}">
+					<input type="text" name="points"
+						class="form-control input-number" value="100" min="100" max="150"
+						readonly="readonly" style="height: 27px;text-align:center;"> <span class="input-group-btn">
+					</c:when>
+					</c:choose>
+					
 						<button type="button" class="btn btn-success btn-number"
 							data-type="plus" data-field="points">
 							<span class="glyphicon glyphicon-plus"></span>

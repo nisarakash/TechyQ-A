@@ -27,9 +27,9 @@ public class Challenge {
 	@Column(name = "question")
 	private String question;
 	@Column(name = "challenge_start_time")
-	private Date startTime;
+	private Timestamp startTime;
 	@Column(name = "challenge_end_time")
-	private Date endTime;
+	private Timestamp endTime;
 	@Column(name = "challenge_status")
 	private int challengeStatus;
 	@Column(name = "host_answer")
@@ -80,16 +80,16 @@ public class Challenge {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getStartTime() {
+	public Timestamp getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Date startTime) {
+	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
-	public Date getEndTime() {
+	public Timestamp getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
 	public int getChallengeStatus() {

@@ -8,7 +8,7 @@ public interface ChallengeDAO {
 	
 	public void addChallenge(Challenge challenge);
 	public Challenge getChallenge(int challengeID);
-	public List<Challenge> getOpenChallenges();
+	public List<Challenge> getOpenChallenges(int points);
 	public List<Challenge> getAllChallenege(int challengeStatus);
 
 }

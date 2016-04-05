@@ -2,6 +2,8 @@ package com.journaldev.spring.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -49,10 +51,19 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Challenge> getOpenChallenges() {
+	public List<Challenge> getOpenChallenges(int points) {
 		// TODO Auto-generated method stub
+		List<Challenge> listChallenge;
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Challenge> listChallenge = session.createQuery("from Challenge where challengeStatus=0").list();
+		if(points<199){
+		listChallenge = session.createQuery("from Challenge where challengeStatus=0 and points between 5 and 30").list();
+		}
+		else if(points>199 & points<499){
+			listChallenge = session.createQuery("from Challenge where challengeStatus=0 and points between 31 and 100").list();
+		}
+		else{
+			listChallenge = session.createQuery("from Challenge where challengeStatus=0 and points between 101 and 150").list();
+		}
 		return listChallenge;
 	}
 

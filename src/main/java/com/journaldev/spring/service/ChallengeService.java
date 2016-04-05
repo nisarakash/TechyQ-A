@@ -10,6 +10,6 @@ public interface ChallengeService {
 
 	boolean addChallenge(Challenge c);
     Challenge getChallenge(int challengeID);
-    ArrayList<Challenge> getOpenChallenges();
+    ArrayList<Challenge> getOpenChallenges(int points);
 	List<Challenge> getAllChallenege(int challengeStatus);
 }
