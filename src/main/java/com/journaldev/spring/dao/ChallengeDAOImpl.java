@@ -75,6 +75,30 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 		// TODO Auto-generated method stub
 		List<Challenge> listUnderReviewChallenge;
 		Session session = this.sessionFactory.getCurrentSession();
+		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime() - ((1439*60)+59)* 1000);
+		System.out.println(date);
+		
+		List<Challenge> listNeedtoChangeStatus = session.createQuery("from Challenge where endTime < '" + date +"'").list();
+		
+		for(int i=0; i<listNeedtoChangeStatus.size(); i++){
+			Challenge c = listNeedtoChangeStatus.get(i);
+			int challengeId = c.getChallengeID();
+			int numberOfHostVotes = 0;
+			numberOfHostVotes = session.createQuery("from ChallengeVote where vote='host' and challengeId=" + challengeId).list().size();
+					
+			int numberOfOpponentVotes = 0;
+			numberOfOpponentVotes = session.createQuery("from ChallengeVote where vote='opponent' and challengeId=" + challengeId).list().size();
+			if(numberOfHostVotes>numberOfOpponentVotes){
+				Query query=session.createQuery("update Challenge set challengeStatus=2, winner='"+c.getHostUser()+"' where challengeID=" + challengeId);
+				int res = query.executeUpdate();
+			}
+			else{
+				Query query=session.createQuery("update Challenge set challengeStatus=2, winner='"+c.getOpponentUser()+"' where challengeID=" + challengeId);
+				int res = query.executeUpdate();
+			}
+			
+			
+		}
 		if(points<199){
 		listUnderReviewChallenge = session.createQuery("from Challenge where challengeStatus=1 and points between 5 and 30").list();
 		}
@@ -94,6 +118,7 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 		// TODO Auto-generated method stub
 		List<Challenge> listCloseChallenge;
 		Session session = this.sessionFactory.getCurrentSession();
+		
 		if(points<199){
 		listCloseChallenge = session.createQuery("from Challenge where challengeStatus=2 and points between 5 and 30").list();
 		}
