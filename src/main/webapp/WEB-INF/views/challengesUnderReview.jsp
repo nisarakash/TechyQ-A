@@ -56,7 +56,7 @@
 		<tbody>
 			<c:forEach items="${underReviewChallenge}" var="urc">
 				<tr>
-					<td><a href="answerChallenges?challengeID=${urc.challengeID}">${urc.title}</a></td>
+					<td><a href="challengeq?challengeID=${urc.challengeID}">${urc.title}</a></td>
 					<td style="width: 10%;">${urc.hostUser}</td>
 					<td style="width: 10%;">${urc.startTime}</td>
 					<td style="width: 10%;">${urc.points}</td>

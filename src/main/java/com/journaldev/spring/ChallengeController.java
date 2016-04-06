@@ -113,7 +113,7 @@ public class ChallengeController {
 		{
 			modelView.setViewName("challengesUnderReview");
 			int points =(Integer) session.getAttribute("points");
-			ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges(points);
+			ArrayList<Challenge> opechallenges = challengeService.getUnderReviewChallenges(points);
 			model.addAttribute("underReviewChallenge", opechallenges);
 			return modelView;
 		}
@@ -134,7 +134,7 @@ public class ChallengeController {
 		{
 			modelView.setViewName("closedChallenges");
 			int points =(Integer) session.getAttribute("points");
-			ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges(points);
+			ArrayList<Challenge> opechallenges = challengeService.getClosedChallenges(points);
 			model.addAttribute("closeChallenge", opechallenges);
 			return modelView;
 		}
@@ -232,6 +232,6 @@ public class ChallengeController {
 		ch.setEndTime(endTime);
 		boolean t =challengeService.addAnswertoChallenge(ch);
 		
-		return "openChallengeComment";
+		return "redirect:challengeq?challengeID="+ challengeId;
 	}
 }
