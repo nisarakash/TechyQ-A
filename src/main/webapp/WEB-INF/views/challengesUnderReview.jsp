@@ -47,7 +47,7 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th style="width: 70%;">Question</th>
+				<th style="width: 70%;"><center>Question</center></th>
 				<th style="width: 10%;">Posted By</th>
 				<th style="width: 10%;">Created On</th>
 				<th style="width: 10%;">Points</th>
@@ -56,7 +56,7 @@
 		<tbody>
 			<c:forEach items="${underReviewChallenge}" var="urc">
 				<tr>
-					<td><a href="challengeq?challengeID=${urc.challengeID}">${urc.title}</a></td>
+					<td><center><a href="challengeq?challengeID=${urc.challengeID}">${urc.title}</a></center></td>
 					<td style="width: 10%;">${urc.hostUser}</td>
 					<td style="width: 10%;">${urc.startTime}</td>
 					<td style="width: 10%;">${urc.points}</td>

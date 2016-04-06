@@ -17,6 +17,24 @@
 	type="text/css">
 <script src="resources/js/search.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/jquery-2.0.3.js"></script>
+<script type="text/javascript"
+	src="resources/js/jquery.countdownTimer.js"></script>
+<!-- <link rel="stylesheet" type="text/css"
+	href="resources/css/jquery.countdownTimer.css" />
+ -->
+<script type="text/javascript">
+	$(function() {
+		$('#future_date')
+				.countdowntimer(
+						{
+							dateAndTime : "2016/04/07 00:00:00",
+							size : "lg",
+							regexpMatchFormat : "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})",
+							regexpReplaceWith : "$2<sup class='displayformat'>hours</sup> $3<sup class='displayformat'>minutes</sup> $4<sup class='displayformat'>seconds</sup>"
+						});
+	});
+</script>
 </head>
 <body>
 
@@ -77,7 +95,9 @@
 		<div class="col-lg-4 centered" style="width: 24%;">
 			<center>
 				<div class="form-group">
-					<h4>Time Left:&nbsp;&nbsp;&nbsp;12:12:12</h4>
+					<h4>Time Left:&nbsp;&nbsp;&nbsp;<div id="countdowntimer">
+							<span id="future_date"><span>
+						</div></h4>
 				</div>
 			</center>
 

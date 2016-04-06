@@ -47,7 +47,7 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th style="width: 70%;">Question</th>
+				<th style="width: 70%;"><center>Question</center></th>
 				<th style="width: 10%;">Posted By</th>
 				<th style="width: 10%;">Created On</th>
 				<th style="width: 10%;">Points</th>
@@ -57,7 +57,7 @@
 			<c:forEach items="${openChallenge}" var="oc">
 				<tr>
 				<c:if test="${username ne oc.hostUser}">
-					<td><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></td>
+					<td><center><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></center></td>
 					<td style="width: 10%;">${oc.hostUser}</td>
 					<td style="width: 10%;">${oc.startTime}</td>
 					<td style="width: 10%;">${oc.points}</td>

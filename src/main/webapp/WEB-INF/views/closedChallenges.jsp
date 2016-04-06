@@ -47,7 +47,7 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th style="width: 70%;">Question</th>
+				<th style="width: 70%;"><center>Question</center></th>
 				<th style="width: 10%;">Posted By</th>
 				<th style="width: 10%;">Created On</th>
 				<th style="width: 10%;">Points</th>
@@ -56,7 +56,7 @@
 		<tbody>
 			<c:forEach items="${closeChallenge}" var="cc">
 				<tr>
-					<td><a href="challengec?challengeID=${cc.challengeID}">${cc.title}</a></td>
+					<td><center><a href="challengec?challengeID=${cc.challengeID}">${cc.title}</a></center></td>
 					<td style="width: 10%;">${cc.hostUser}</td>
 					<td style="width: 10%;">${cc.startTime}</td>
 					<td style="width: 10%;">${cc.points}</td>
