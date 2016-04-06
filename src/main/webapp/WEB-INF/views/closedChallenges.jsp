@@ -56,7 +56,7 @@
 		<tbody>
 			<c:forEach items="${closeChallenge}" var="cc">
 				<tr>
-					<td><a href="answerChallenges?challengeID=${cc.challengeID}">${cc.title}</a></td>
+					<td><a href="challengec?challengeID=${cc.challengeID}">${cc.title}</a></td>
 					<td style="width: 10%;">${cc.hostUser}</td>
 					<td style="width: 10%;">${cc.startTime}</td>
 					<td style="width: 10%;">${cc.points}</td>

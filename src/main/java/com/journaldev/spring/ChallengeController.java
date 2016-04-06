@@ -235,4 +235,26 @@ public class ChallengeController {
 		
 		return "redirect:challengeq?challengeID="+ challengeId;
 	}
+	
+	@RequestMapping(value = "/challengec", method = RequestMethod.GET)
+	public String closeChallengeWithId(ModelMap model, HttpServletRequest request, HttpSession session) {
+		int challengeId = Integer.parseInt(request.getParameter("challengeID"));
+		Challenge ch = challengeService.getChallenge(challengeId);
+		String userName = (String) session.getAttribute("username");
+		ChallengeVote vote = new ChallengeVote();
+		vote.setChallengeId(challengeId);
+		vote.setReviewer(userName);
+		boolean alreadyVoted = challengeService.checkVote(vote);
+		System.out.println("Voted : +" + alreadyVoted);
+		ArrayList<ChallengeComment> cc = (ArrayList<ChallengeComment>) challengeService
+				.getAllCommentToChallengeId(challengeId);
+		System.out.println("Comment Size" + cc.size());
+		model.addAttribute("challenge", ch);
+		model.addAttribute("alreadyVoted", alreadyVoted);
+		model.addAttribute("comments", cc);
+		return "closedChallenge";
+
+
+	}
+	
 }
