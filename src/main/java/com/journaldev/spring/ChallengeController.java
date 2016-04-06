@@ -68,6 +68,7 @@ public class ChallengeController {
 			int points =(Integer) session.getAttribute("points");
 			ArrayList<Challenge> opechallenges = challengeService.getOpenChallenges(points);
 			model.addAttribute("openChallenge", opechallenges);
+			model.addAttribute("username",session.getAttribute("username"));
 			return modelView;
 		}
 		else

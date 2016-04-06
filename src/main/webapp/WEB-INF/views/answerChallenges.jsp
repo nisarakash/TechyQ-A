@@ -45,7 +45,12 @@
 				<label class="col-sm-2 control-label" for="desc">Write your
 					Answer</label>
 				<div class="col-sm-10">
+				<c:if test="${username == challenge.hostUser}">
+					<textarea class="form-control" id="answer" name="answer" rows="4" readonly="readonly"></textarea>
+				</c:if>
+				<c:if test="${username != challenge.hostUser}">
 					<textarea class="form-control" id="answer" name="answer" rows="4"></textarea>
+				</c:if>
 				</div>
 				
 			</div>
@@ -53,8 +58,10 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 				<input type='hidden' name='challengeId' value='${challenge.challengeID}'/>
+				<c:if test="${username != challenge.hostUser}">
 					<input class="btn btn-success" type="submit" value="Submit"
 						id="submit">
+						</c:if>
 					<div style="float: right;">
 					
 						<label class="col-sm-3 control-label" for="points">Points</label>

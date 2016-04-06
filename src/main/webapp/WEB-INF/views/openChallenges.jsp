@@ -56,10 +56,18 @@
 		<tbody>
 			<c:forEach items="${openChallenge}" var="oc">
 				<tr>
+				<c:if test="${username ne oc.hostUser}">
 					<td><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></td>
 					<td style="width: 10%;">${oc.hostUser}</td>
 					<td style="width: 10%;">${oc.startTime}</td>
 					<td style="width: 10%;">${oc.points}</td>
+					</c:if>
+					<c:if test="${username == oc.hostUser}">
+					<td><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></td>
+					<td style="width: 10%;">Challenge posted by you</td>
+					<td style="width: 10%;">${oc.startTime}</td>
+					<td style="width: 10%;">${oc.points}</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>
