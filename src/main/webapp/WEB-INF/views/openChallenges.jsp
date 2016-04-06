@@ -56,7 +56,7 @@
 		<tbody>
 			<c:forEach items="${openChallenge}" var="oc">
 				<tr>
-					<td><a href="challengeq?challengeID=${oc.challengeID}">${oc.title}</a></td>
+					<td><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></td>
 					<td style="width: 10%;">${oc.hostUser}</td>
 					<td style="width: 10%;">${oc.startTime}</td>
 					<td style="width: 10%;">${oc.points}</td>

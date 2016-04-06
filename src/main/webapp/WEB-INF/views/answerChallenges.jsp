@@ -27,7 +27,7 @@
 	<%@ include file="loginLogoHeader.jsp"%>
 	<div style="width: 100%; padding-left: 10%; padding-right: 10%;"
 		class="container">
-		<p class="text-center" style="font-size: 30px;">${challenge.title}</p>
+		<p class="text-center" style="font-size: 30px;">${challenge.title} </p>
 		<p class="text-center" style="font-size: 25px;">${challenge.question}</p>
 		<div style="float: right; width: 43%;">
 			<h4 class="text-right">by ${challenge.hostUser} on
@@ -37,9 +37,9 @@
 	<br />
 
 	<div style="padding-right: 15%; padding-left: 5%;">
-		<form:form action="${pageContext.request.contextPath}/addAns"
+		<form:form action="${pageContext.request.contextPath}/addAnswertoChallenge"
 			method="POST" class="form-horizontal" role="form">
-
+			
 			<div class="form-group">
 
 				<label class="col-sm-2 control-label" for="desc">Write your
@@ -47,11 +47,12 @@
 				<div class="col-sm-10">
 					<textarea class="form-control" id="answer" name="answer" rows="4"></textarea>
 				</div>
-				<input type='hidden' name='questionid' value='${question.qid}' />
+				
 			</div>
 			<br>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
+				<input type='hidden' name='challengeId' value='${challenge.challengeID}'/>
 					<input class="btn btn-success" type="submit" value="Submit"
 						id="submit">
 					<div style="float: right;">

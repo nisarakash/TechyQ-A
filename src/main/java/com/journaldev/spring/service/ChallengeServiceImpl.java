@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.journaldev.spring.dao.ChallengeDAO;
-import com.journaldev.spring.dao.QuestionDAO;
 import com.journaldev.spring.model.Challenge;
+import com.journaldev.spring.model.ChallengeComment;
+import com.journaldev.spring.model.ChallengeVote;
 
 @Service
 public class ChallengeServiceImpl implements ChallengeService {
@@ -25,6 +26,16 @@ public class ChallengeServiceImpl implements ChallengeService {
 		challengeDAO.addChallenge(c);
 		return true;
 	}
+
+	
+	@Override
+	@Transactional
+	public boolean addAnswertoChallenge(Challenge challenge) {
+		// TODO Auto-generated method stub
+		challengeDAO.addAnswertoChallenge(challenge);
+		return true;
+	}
+
 
 	@Override
 	@Transactional
@@ -46,4 +57,50 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return listchallenges;
 	}
 	
+	@Override
+	@Transactional
+	public ArrayList<Challenge> getUnderReviewChallenges(int points) {
+		// TODO Auto-generated method stub
+		ArrayList<Challenge> listUnderReviewChallenges = (ArrayList<Challenge>) challengeDAO.getUnderReviewChallenges(points);
+		return listUnderReviewChallenges;
+	}
+	
+	@Override
+	public ArrayList<Challenge> getClosedChallenges(int points) {
+		// TODO Auto-generated method stub
+		ArrayList<Challenge> listClosedChallenges = (ArrayList<Challenge>) challengeDAO.getCloseChallenges(points);
+		return listClosedChallenges;
+	}
+
+	@Override
+	@Transactional
+	public void addVote(ChallengeVote vote) {
+		challengeDAO.addVote(vote);
+		
+	}
+
+	@Override
+	@Transactional
+	public boolean checkVote(ChallengeVote vote) {
+		return challengeDAO.checkVote(vote);
+	}
+
+	@Override
+	@Transactional
+	public int countVote(int challengeId, String vote) {
+		return challengeDAO.countVote(challengeId, vote);
+	}
+
+	@Override
+	@Transactional
+	public void addComment(ChallengeComment comment) {
+		challengeDAO.addComment(comment);
+	}
+
+	@Override
+	@Transactional
+	public List<ChallengeComment> getAllCommentToChallengeId(int challengeId) {
+		return challengeDAO.getAllCommentToChallengeId(challengeId);
+	}
+
 }
