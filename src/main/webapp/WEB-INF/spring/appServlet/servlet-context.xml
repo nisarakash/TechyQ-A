@@ -44,6 +44,8 @@
 				<beans:value>com.journaldev.spring.model.Question</beans:value>
 				<beans:value>com.journaldev.spring.model.Answer</beans:value>
 				<beans:value>com.journaldev.spring.model.Challenge</beans:value>
+				<beans:value>com.journaldev.spring.model.ChallengeVote</beans:value>
+				<beans:value>com.journaldev.spring.model.ChallengeComment</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
