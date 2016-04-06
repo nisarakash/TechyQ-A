@@ -11,7 +11,7 @@ public interface ChallengeDAO {
 	public void addChallenge(Challenge challenge);
 	public Challenge getChallenge(int challengeID);
 	public List<Challenge> getOpenChallenges(int points);
-	public List<Challenge> getUnderReviewChallenges(int points);
+	public List<Challenge> getUnderReviewChallenges(int points, String username);
 	public List<Challenge> getCloseChallenges(int points);
 	public List<Challenge> getAllChallenege(int challengeStatus);
 	

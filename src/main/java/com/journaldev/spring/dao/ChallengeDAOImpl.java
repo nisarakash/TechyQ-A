@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.journaldev.spring.model.Challenge;
 import com.journaldev.spring.model.ChallengeComment;
 import com.journaldev.spring.model.ChallengeVote;
+import com.journaldev.spring.model.User;
 
 @Repository
 public class ChallengeDAOImpl implements ChallengeDAO{
@@ -71,18 +72,32 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Challenge> getUnderReviewChallenges(int points) {
+	public List<Challenge> getUnderReviewChallenges(int points, String username) {
 		// TODO Auto-generated method stub
 		List<Challenge> listUnderReviewChallenge;
 		Session session = this.sessionFactory.getCurrentSession();
 		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime() - ((1439*60)+59)* 1000);
 		System.out.println(date);
-		
-		List<Challenge> listNeedtoChangeStatus = session.createQuery("from Challenge where endTime < '" + date +"'").list();
-		
+		int userPoint = ((User) session.createQuery("from User where username='"+ username + "'").list().get(0)).getPoints();
+		List<Challenge> listNeedtoChangeStatus;
+		if(userPoint<199){
+		   listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 5 and 30").list();
+	    }
+		else if(userPoint>199 & userPoint<499){
+			listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 31 and 100").list();
+
+		}
+		else{
+			listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 101 and 150").list();
+
+		}
+	
 		for(int i=0; i<listNeedtoChangeStatus.size(); i++){
 			Challenge c = listNeedtoChangeStatus.get(i);
 			int challengeId = c.getChallengeID();
+			int challengePoints = c.getPoints();
+			User hostUser= (User) session.createQuery("from User where username='"+c.getHostUser()+"'").list().get(0);
+			User opponentUser= (User) session.createQuery("from User where username='"+c.getOpponentUser()+"'").list().get(0);
 			int numberOfHostVotes = 0;
 			numberOfHostVotes = session.createQuery("from ChallengeVote where vote='host' and challengeId=" + challengeId).list().size();
 					
@@ -91,18 +106,31 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 			if(numberOfHostVotes>numberOfOpponentVotes){
 				Query query=session.createQuery("update Challenge set challengeStatus=2, winner='"+c.getHostUser()+"' where challengeID=" + challengeId);
 				int res = query.executeUpdate();
+				int hostUserPoints = hostUser.getPoints() + challengePoints;
+				int opponentUserPoints = opponentUser.getPoints() - challengePoints;
+				Query query1=session.createQuery("update User set points=" + hostUserPoints + "where username='" + c.getHostUser()+"'" );
+				int res1 = query1.executeUpdate();
+				Query query2=session.createQuery("update User set points=" + opponentUserPoints + "where username='" + c.getOpponentUser()+"'");
+				int res2 = query2.executeUpdate();
 			}
 			else{
 				Query query=session.createQuery("update Challenge set challengeStatus=2, winner='"+c.getOpponentUser()+"' where challengeID=" + challengeId);
 				int res = query.executeUpdate();
+				int hostUserPoints = hostUser.getPoints() - challengePoints;
+				int opponentUserPoints = opponentUser.getPoints() + challengePoints;
+				Query query1=session.createQuery("update User set points=" + hostUserPoints + "where username=" + c.getHostUser() );
+				int res1 = query1.executeUpdate();
+				Query query2=session.createQuery("update User set points=" + opponentUserPoints + "where username=" + c.getOpponentUser() );
+				int res2 = query2.executeUpdate();
 			}
 			
 			
 		}
-		if(points<199){
+		
+		if(userPoint<199){
 		listUnderReviewChallenge = session.createQuery("from Challenge where challengeStatus=1 and points between 5 and 30").list();
 		}
-		else if(points>199 & points<499){
+		else if(userPoint>199 & userPoint<499){
 			listUnderReviewChallenge = session.createQuery("from Challenge where challengeStatus=1 and points between 31 and 100").list();
 		}
 		else{

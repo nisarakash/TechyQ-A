@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.journaldev.spring.dao.userDAO;
 import com.journaldev.spring.model.Challenge;
 import com.journaldev.spring.model.ChallengeComment;
 import com.journaldev.spring.model.ChallengeVote;
@@ -24,6 +25,8 @@ public class ChallengeController {
 	@Autowired
 	ChallengeService challengeService;
 
+	@Autowired
+	private userDAO dao;
 	
 	@RequestMapping(value = "/createChallenges", method = RequestMethod.GET)
 	public ModelAndView createChallenge(HttpServletRequest request) {
@@ -113,8 +116,10 @@ public class ChallengeController {
 		if(session.getAttribute("username") != null)
 		{
 			modelView.setViewName("challengesUnderReview");
+			String username =session.getAttribute("username").toString();
+			session.setAttribute("points", dao.getUserDetails(username).getPoints() );
 			int points =(Integer) session.getAttribute("points");
-			ArrayList<Challenge> opechallenges = challengeService.getUnderReviewChallenges(points);
+			ArrayList<Challenge> opechallenges = challengeService.getUnderReviewChallenges(points,username);
 			model.addAttribute("underReviewChallenge", opechallenges);
 			return modelView;
 		}

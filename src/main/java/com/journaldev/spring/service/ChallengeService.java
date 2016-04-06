@@ -13,7 +13,7 @@ public interface ChallengeService {
 	boolean addAnswertoChallenge(Challenge challenge);
     Challenge getChallenge(int challengeID);
     ArrayList<Challenge> getOpenChallenges(int points);
-    ArrayList<Challenge> getUnderReviewChallenges(int points);
+    ArrayList<Challenge> getUnderReviewChallenges(int points, String username);
     ArrayList<Challenge> getClosedChallenges(int points);
 	List<Challenge> getAllChallenege(int challengeStatus);
 	public void addVote(ChallengeVote vote);
