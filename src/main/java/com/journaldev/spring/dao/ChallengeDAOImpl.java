@@ -95,13 +95,13 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 		List<Challenge> listCloseChallenge;
 		Session session = this.sessionFactory.getCurrentSession();
 		if(points<199){
-		listCloseChallenge = session.createQuery("from Challenge where challengeStatus=1 and points between 5 and 30").list();
+		listCloseChallenge = session.createQuery("from Challenge where challengeStatus=2 and points between 5 and 30").list();
 		}
 		else if(points>199 & points<499){
-			listCloseChallenge = session.createQuery("from Challenge where challengeStatus=1 and points between 31 and 100").list();
+			listCloseChallenge = session.createQuery("from Challenge where challengeStatus=2 and points between 31 and 100").list();
 		}
 		else{
-			listCloseChallenge = session.createQuery("from Challenge where challengeStatus=1 and points between 101 and 150").list();
+			listCloseChallenge = session.createQuery("from Challenge where challengeStatus=2 and points between 101 and 150").list();
 		}
 		return listCloseChallenge;
 	}

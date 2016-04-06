@@ -66,6 +66,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 	
 	@Override
+	@Transactional
 	public ArrayList<Challenge> getClosedChallenges(int points) {
 		// TODO Auto-generated method stub
 		ArrayList<Challenge> listClosedChallenges = (ArrayList<Challenge>) challengeDAO.getCloseChallenges(points);
