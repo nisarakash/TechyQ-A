@@ -25,6 +25,23 @@ public class userDAO {
 	}
 
 	@Transactional
+	public User getUserDetails(String username) {
+		@SuppressWarnings("unchecked")
+		Session session = sessionFactory.openSession();
+		//session.beginTransaction();
+		
+		Query query = session
+				.createQuery("from User where username = :username");
+		query.setParameter("username", username);
+		List<User> list = query.list();
+	
+		if (list.size()>= 1) {
+			return (User) list.get(0);
+		}
+		return null;
+	}
+
+	@Transactional
 	public User getUser(User user) {
 		@SuppressWarnings("unchecked")
 		Session session = sessionFactory.openSession();

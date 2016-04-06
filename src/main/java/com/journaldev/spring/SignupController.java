@@ -46,7 +46,7 @@ public class SignupController {
 			return modelView;
 		}
 
-		boolean user = dao.addUser(new User(username,password,firstName,middleName,lastName,email,gender,state,points));
+		boolean user = dao.addUser(new User(username,password,firstName,middleName,lastName,email,gender,state,points,"Beginner"));
 		if(user == true){
 			System.out.println("done");
 			modelView.addObject("Successful","Successful Signup");

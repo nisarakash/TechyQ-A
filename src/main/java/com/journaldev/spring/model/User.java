@@ -32,9 +32,11 @@ public class User {
 	private String gender;
 	@Column(name="points")
 	private int points;
+	@Column(name="level")
+	private String level;
 
 	public User(String username, String password, String firstName, String middleName,
-			String lastName, String email, String gender, String state,int points) {
+			String lastName, String email, String gender, String state,int points, String level) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -45,6 +47,15 @@ public class User {
 		this.state = state;
 		this.gender = gender;
 		this.points=points;
+		this.level=level;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	public String getMiddleName() {
