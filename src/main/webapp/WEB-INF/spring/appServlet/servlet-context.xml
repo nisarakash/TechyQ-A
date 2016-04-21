@@ -28,9 +28,12 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<beans:property name="url" value="jdbc:mysql://127.9.60.2:3306/techyqanda" />
+		<beans:property name="username" value="adminz9edtHN" />
+		<beans:property name="password" value="ZmBYVGZtVQE5" />
+		<!-- <beans:property name="url" value="jdbc:mysql://localhost:3306/techq&amp;a" />
 		<beans:property name="username" value="root" />
-		<beans:property name="password" value="root" />
+		<beans:property name="password" value="root" /> -->
 	</beans:bean>
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
