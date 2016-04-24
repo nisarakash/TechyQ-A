@@ -68,7 +68,7 @@
 		</div>
 		<div class="tab-pane fade" id="review"></div>
 		<div class="tab-pane fade" id="close"></div>
-		<div class="tab-pane fade" id="seminar">sfsdfsdf</div>
+		<div class="tab-pane fade" id="seminar"></div>
 
 		</div>
 </body>
