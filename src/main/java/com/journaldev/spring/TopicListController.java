@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,8 +50,13 @@ public class TopicListController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/newtopic", method = RequestMethod.GET)
-	public String addNewTopic(ModelMap model) {
+	@RequestMapping(value = "/newtopic",method = RequestMethod.GET)
+	public String addNewTopic(HttpServletRequest request) {
+		String username = (String) request.getSession().getAttribute("username");
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("username"));
+		session.setAttribute("username", username);
+		System.out.println(session.getAttribute("username"));
 		return "newtopic";
 	}
 

@@ -36,11 +36,7 @@ function validate(){
 
 </head>
 <body>
-	<header id="heading">
-	<div class="container text-center">
-		<h1>Techy Q&A</h1>
-	</div>
-	</header>
+<%@ include file="loginLogoHeader.jsp"%>
 	<br />
 	<br />
 	<div>

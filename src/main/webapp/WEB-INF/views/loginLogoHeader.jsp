@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--  Section for Login header -->
 <nav class="navbar navbar-default"
 	style="margin-bottom: 0px; background-color: #fff;">
@@ -10,7 +15,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">TechyQ&A</a>
+			<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/home">TechyQ&A</a>
 		</div>
 
 
