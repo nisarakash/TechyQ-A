@@ -16,6 +16,8 @@ public interface ChallengeService {
     ArrayList<Challenge> getUnderReviewChallenges(int points, String username);
     ArrayList<Challenge> getClosedChallenges(int points);
 	List<Challenge> getAllChallenege(int challengeStatus);
+	ArrayList<Challenge> getUserChallengesPosted(String username);
+	ArrayList<Challenge> getUserChallengesAttended(String username);
 	public void addVote(ChallengeVote vote);
 	public boolean checkVote(ChallengeVote vote);
 	public int countVote(int challengeId, String vote);

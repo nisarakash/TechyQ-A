@@ -73,6 +73,23 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return listClosedChallenges;
 	}
 
+	
+	@Override
+	@Transactional
+	public ArrayList<Challenge> getUserChallengesPosted(String username) {
+		// TODO Auto-generated method stub
+		ArrayList<Challenge> userPostedChallenges = (ArrayList<Challenge>) challengeDAO.getUserChallengesPosted(username);
+		return userPostedChallenges;
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<Challenge> getUserChallengesAttended(String username) {
+		// TODO Auto-generated method stub
+		ArrayList<Challenge> userAttendedChallenges = (ArrayList<Challenge>) challengeDAO.getUserChallengesAttended(username);
+		return userAttendedChallenges;
+	}
+
 	@Override
 	@Transactional
 	public void addVote(ChallengeVote vote) {

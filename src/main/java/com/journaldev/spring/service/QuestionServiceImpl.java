@@ -58,4 +58,13 @@ public class QuestionServiceImpl implements QuestionService {
 	public ArrayList<Question> getNumberOfAnswerInQuestion() {
 		return (ArrayList<Question>) questionDAO.getNumberOfAnswerInQuestion();
 	}
+
+	
+	@Transactional
+	public ArrayList<Question> getUserQuestion(String username) {
+		// TODO Auto-generated method stub
+		return (ArrayList<Question>) questionDAO.getUserQuestion(username);
+	}
+	
+	
 }

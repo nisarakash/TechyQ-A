@@ -81,14 +81,14 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 		int userPoint = ((User) session.createQuery("from User where username='"+ username + "'").list().get(0)).getPoints();
 		List<Challenge> listNeedtoChangeStatus;
 		if(userPoint<199){
-		   listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 5 and 30").list();
+		   listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 5 and 30 and challengeStatus=1").list();
 	    }
 		else if(userPoint>199 & userPoint<499){
-			listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 31 and 100").list();
+			listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 31 and 100 and challengeStatus=1").list();
 
 		}
 		else{
-			listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 101 and 150").list();
+			listNeedtoChangeStatus =session.createQuery("from Challenge where endTime < '" + date +"' and points between 101 and 150 and challengeStatus=1").list();
 
 		}
 	
@@ -159,6 +159,25 @@ public class ChallengeDAOImpl implements ChallengeDAO{
 		return listCloseChallenge;
 	}
 
+	
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Challenge> getUserChallengesPosted(String username) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Challenge> userPostedChallenges = session.createQuery("from Challenge where hostUser='"+username+"'").list();
+		return userPostedChallenges;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Challenge> getUserChallengesAttended(String username) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Challenge> userAttendedChallenges = session.createQuery("from Challenge where opponentUser='"+username+"'").list();
+		return userAttendedChallenges;
+	}
 
 	@Override
 	public void addVote(ChallengeVote vote) {

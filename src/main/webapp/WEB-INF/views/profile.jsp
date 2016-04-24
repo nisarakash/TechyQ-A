@@ -29,8 +29,7 @@
 	<div class="container">
     	<div class="row">
   			
-    
-              		<div class="row">
+        	<div class="row">
                         <div class="col-sm-12 col-sm-8">
                             <p style="font-size: 70px;">${user.firstName} ${user.lastName}</p>
                             <p style="font-size: 30px;"><strong style="font-size: 30px;">Username: </strong>${user.username} </p>
@@ -58,10 +57,83 @@
                        
               		</div><!--/row-->
 
-    
-    
+    	
+   <div class="row">
+    	<div class="col-md-12">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">              
+    					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a href="#tab1default" data-toggle="tab"> Questions </a></li>
+						<li><a href="home" data-toggle="tab"> Answers </a></li>
+						<li><a href="#" id="myTabDrop1"
+								class="dropdown-toggle" data-toggle="dropdown"> Challenges <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#tab2default" data-toggle="tab">Challenges Posted</a></li>
+								<li><a href="openChallenges" data-toggle="tab">Challenges Attended</a></li>
+							</ul></li>
+						<li><a href="home"> Seminars </a></li>
+						</ul>
+				</div>
+    <div class="tab-pane fade in active" id="tab1default">
+	<table class="table table-hover">
+		<thead id="table_head">
+			<tr>
+				<th style="width: 60%;"><center>Question</center></th>
+				<th style="width: 20%;">Posted By</th>
+				<th style="width: 20%;">Created On</th>
+			</tr>
+		</thead>
+		<tbody id="table_body">
+			<c:forEach items="${userquestion}" var="uq">
+				<tr>
+					<td><center><a href="answers?qid=${uq.qid}">${uq.qtitle}</a></center></td>
+					<td style="width: 10%;">${uq.userName}</td>
+					<td style="width: 10%;">${uq.qtimestamp}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	 </table>
+	 </div>
+	 <div class="tab-pane fade" id="tab2default">
+	<table class="table table-hover">
+		<thead >
+			<tr>
+				<th style="width: 70%;"><center>Challenge</center></th>
+				<th style="width: 10%;">Posted By</th>
+				<th style="width: 10%;">Created On</th>
+				<th style="width: 10%;">Points</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${userPostedChallenges}" var="upc">
+				<tr>
+					<td><center>
+					<c:choose>
+					<c:when test="${upc.challengeStatus == 0}">	
+					<a href="challengeq?challengeID=${upc.challengeID}">${upc.title}</a>
+					</c:when>
+					<c:when test="${upc.challengeStatus == 1}">	
+					<a href="challengeq?challengeID=${upc.challengeID}">${upc.title}</a>
+					</c:when>
+					<c:otherwise>
+					<a href="challengec?challengeID=${upc.challengeID}">${upc.title}</a>
+					</c:otherwise>
+					</c:choose>
+					</center></td>
+					<td style="width: 10%;">${upc.hostUser}</td>
+					<td style="width: 10%;">${upc.startTime}</td>
+					<td style="width: 10%;">${upc.points}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	 </table>
+	 </div>
+	 </div>
+	
   </div>
 </div>
 
 </body>
+
+
 </html>

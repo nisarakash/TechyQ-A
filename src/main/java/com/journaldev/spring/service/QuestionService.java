@@ -19,4 +19,6 @@ public interface QuestionService {
 	ArrayList<Question> getTenHotQuestion();
 	
 	ArrayList<Question> getNumberOfAnswerInQuestion();
+	
+	ArrayList<Question> getUserQuestion(String username);
 }

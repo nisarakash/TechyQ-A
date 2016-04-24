@@ -85,6 +85,15 @@ public class QuestionDAOImpl implements QuestionDAO {
 			questionList.add(q);
 		}
 		return questionList;	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Question> getUserQuestion(String username){
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Question> questionList = session.createQuery("from Question where username='"+username+"'").list();
+		System.out.println(questionList);
+		return questionList;
+	}
 
 	
 	

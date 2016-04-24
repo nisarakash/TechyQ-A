@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,17 +56,18 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${openChallenge}" var="oc">
+			<fmt:parseDate value="${oc.startTime}" var="dateObject" pattern="yyyy-MM-dd HH:mm" />
 				<tr>
 				<c:if test="${username ne oc.hostUser}">
 					<td><center><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></center></td>
 					<td style="width: 10%;">${oc.hostUser}</td>
-					<td style="width: 10%;">${oc.startTime}</td>
+					<td style="width: 10%;"><fmt:formatDate value="${dateObject }" pattern="MM/dd/yyyy hh:mm" /></td>
 					<td style="width: 10%;">${oc.points}</td>
 					</c:if>
 					<c:if test="${username == oc.hostUser}">
-					<td><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></td>
-					<td style="width: 10%;">Challenge posted by you</td>
-					<td style="width: 10%;">${oc.startTime}</td>
+					<td><center><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></center></td>
+					<td style="width: 10%;">${oc.hostUser}</td>
+					<td style="width: 10%;"><fmt:formatDate value="${dateObject }" pattern="MM/dd/yyyy hh:mm" /></td>
 					<td style="width: 10%;">${oc.points}</td>
 					</c:if>
 				</tr>
