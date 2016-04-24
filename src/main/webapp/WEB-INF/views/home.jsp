@@ -83,7 +83,11 @@
 							<div class="summary" style="width: 90%; float: right;">
 								<div style="width: 82%; float: left;">
 									<h3>
-										<a href="answers?qid=${q.qid}" class="question-hyperlink">${q.qtitle}</a>
+										<a href="answers?qid=${q.qid}" class="question-hyperlink"><strong>${q.qtitle}
+										</strong></a>
+										<br>
+										<i>${q.qquestion}</i> 
+										
 									</h3>
 								</div>
 								<div class="started fr" style="width: 16%; float: right;">

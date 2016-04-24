@@ -26,6 +26,7 @@ public class TopicListController {
 
 	@RequestMapping(value = "/home")
 	public String showList(ModelMap model, HttpServletRequest request) {
+		String hintString = null;
 		ArrayList<Question> questions = questionService.latestTenQuestion();
 		ArrayList<Question> answerNumber = questionService.getNumberOfAnswerInQuestion();
 		ArrayList<Question> questionsWithNumberOfAnswer = new ArrayList<Question>();
@@ -34,7 +35,9 @@ public class TopicListController {
 			Question qq = new Question();
 			qq.setQid(q.getQid());
 			qq.setNumberOfAnswers(answerNumber.get(i).getNumberOfAnswers());
-			qq.setQquestion(qq.getQquestion());
+			hintString = q.getQquestion().substring(0,100);
+			hintString+="...";
+			qq.setQquestion(hintString);
 			qq.setQtimestamp(q.getQtimestamp());
 			qq.setQtitle(q.getQtitle());
 			qq.setUserName(q.getUserName());
