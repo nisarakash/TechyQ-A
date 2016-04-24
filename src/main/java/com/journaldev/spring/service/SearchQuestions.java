@@ -52,26 +52,18 @@ public class SearchQuestions {
 				
 	@Autowired
 	QuestionService questionService;
-	
-	@RequestMapping(value = "/question", method = RequestMethod.GET)
-	public String question() {
 
-		return "question";
-
-	}
-
-	@RequestMapping(value = "/question", method = RequestMethod.POST)
+	@RequestMapping(value = "/question")
 	public String questionPrint(ModelMap model,HttpServletRequest request) {
 		int count=0;
 		String question = request.getParameter("topic");
-		if(!question.isEmpty())
+		if(question!=null && !question.isEmpty())
 		{
 		question = question.toLowerCase();
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         ArrayList<String> wordsList = new ArrayList<String>();
         ArrayList<Integer> questionIDList = new ArrayList<Integer>();
         ArrayList<Question> questionList = questionService.getAllQuestions();
-       // question = question.trim().replaceAll("\\question+", " ");
         String[] words = question.split(" ");
         String[] sentence = null;
         String quest = null;
@@ -145,10 +137,10 @@ public class SearchQuestions {
         {
         ArrayList<Question> topQuestion = questionService.getTopQuestions(questionIDList);
         model.addAttribute("topquestion",topQuestion);
-        return "searchPage";
+        return "question";
         }
         model.addAttribute("Found","No results found");
-        return "searchPage";
+        return "question";
 		
 
 	}
