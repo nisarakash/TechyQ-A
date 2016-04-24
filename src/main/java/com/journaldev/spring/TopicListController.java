@@ -35,8 +35,16 @@ public class TopicListController {
 			Question qq = new Question();
 			qq.setQid(q.getQid());
 			qq.setNumberOfAnswers(answerNumber.get(i).getNumberOfAnswers());
+			if(q.getQquestion().length()>100)
+			{
 			hintString = q.getQquestion().substring(0,100);
 			hintString+="...";
+			}
+			else
+			{
+				hintString = q.getQquestion().substring(0,20);
+				hintString+="...";
+			}
 			qq.setQquestion(hintString);
 			qq.setQtimestamp(q.getQtimestamp());
 			qq.setQtitle(q.getQtitle());

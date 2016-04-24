@@ -58,18 +58,10 @@
 			<c:forEach items="${openChallenge}" var="oc">
 			<fmt:parseDate value="${oc.startTime}" var="dateObject" pattern="yyyy-MM-dd HH:mm" />
 				<tr>
-				<c:if test="${username ne oc.hostUser}">
-					<td><center><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></center></td>
+					<td><center><a href="answerChallenges?challengeID=${oc.challengeID}"><strong>${oc.title}</strong></a></center></td>
 					<td style="width: 10%;">${oc.hostUser}</td>
 					<td style="width: 10%;"><fmt:formatDate value="${dateObject }" pattern="MM/dd/yyyy hh:mm" /></td>
 					<td style="width: 10%;">${oc.points}</td>
-					</c:if>
-					<c:if test="${username == oc.hostUser}">
-					<td><center><a href="answerChallenges?challengeID=${oc.challengeID}">${oc.title}</a></center></td>
-					<td style="width: 10%;">${oc.hostUser}</td>
-					<td style="width: 10%;"><fmt:formatDate value="${dateObject }" pattern="MM/dd/yyyy hh:mm" /></td>
-					<td style="width: 10%;">${oc.points}</td>
-					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>
