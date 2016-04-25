@@ -51,17 +51,19 @@ public class AnswerController {
 		String qid = request.getParameter("questionid");
 		String username = (String) request.getSession().getAttribute("username");
 		Date d = new java.sql.Date(new java.util.Date().getTime());
-
 		Answer answer = new Answer();
-		answer.setQid(Integer.parseInt(qid));
-		answer.setTimeStamp(d);
-		answer.setUserName(username);
-		answer.setAnswer(ans);
-
-		answerService.addAnswer(answer);
-
-		return "redirect:answers?qid=" + qid;
-
+		if(!ans.isEmpty())
+        {
+			System.out.println(ans);
+    		answer.setQid(Integer.parseInt(qid));
+    		answer.setTimeStamp(d);
+    		answer.setUserName(username);
+    		answer.setAnswer(ans);
+    		answerService.addAnswer(answer);
+    		return "redirect:answers?qid=" + qid;
+        }
+        else
+        	return "redirect:answers?qid=" + qid;
 	}
 
 	@RequestMapping(value = "/getUser")

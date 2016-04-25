@@ -232,6 +232,8 @@ public class ChallengeController {
 		Challenge ch = challengeService.getChallenge(challengeId);
 		String opponentAnswer = request.getParameter("answer");
 		String opponentUser= (String) request.getSession().getAttribute("username");
+		if(!opponentAnswer.isEmpty())
+		{
 		ch.setOpponentUser(opponentUser);
 		ch.setOpponentAnswer(opponentAnswer);
 		java.sql.Timestamp endTime = new java.sql.Timestamp(new java.util.Date().getTime());
@@ -239,6 +241,8 @@ public class ChallengeController {
 		boolean t =challengeService.addAnswertoChallenge(ch);
 		
 		return "redirect:challengeq?challengeID="+ challengeId;
+		}
+		return "redirect:answerChallenges?challengeID="+ challengeId;
 	}
 	
 	@RequestMapping(value = "/challengec", method = RequestMethod.GET)
