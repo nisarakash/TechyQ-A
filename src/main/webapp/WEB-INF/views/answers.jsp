@@ -87,7 +87,12 @@
 		<c:forEach items="${answers}" var="a">
 			<br />
 			<br />
-			<blockquote class="blockquote-reverse">
+			<c:if test="${a.userName == question.userName}">
+				<blockquote>
+			</c:if>
+			<c:if test="${a.userName != question.userName}">
+				<blockquote class="blockquote-reverse">
+			</c:if>
 				<p>${a.answer}</p>
 				<footer>${a.userName}&nbsp;commented&nbsp;on&nbsp;${a.timeStamp}</footer>
 			</blockquote>

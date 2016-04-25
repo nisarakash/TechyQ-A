@@ -88,6 +88,6 @@
 			<li><a href="reviewChallenges">Challenges Under Review</a></li>
 			<li><a href="closeChallenges">Closed Challenges</a></li>
 		</ul></li>
-	<li><a href="#seminar">Seminars</a></li>
+	<li><a href="video">Seminars</a></li>
 
 </ul>

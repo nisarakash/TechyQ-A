@@ -18,23 +18,20 @@ public class AnswerServiceImpl implements AnswerService {
 		this.answerDAO = answerDAO;
 	}
 
-	@Override
 	@Transactional
 	public QuestionAnswer getAllAnswer(int questionId) {
 
 		return answerDAO.getAllAnswer(questionId);
 	}
 
-	@Override
 	@Transactional
 	public boolean addAnswer(Answer answer) {
 		answerDAO.addAnswer(answer);
 		return true;
 	}
-	
-	@Override
+
 	@Transactional
-	public List<String> getUniqueUser(int qid){
+	public List<String> getUniqueUser(int qid) {
 		return answerDAO.getUniqueAnswerUserToQuestion(qid);
 	}
 

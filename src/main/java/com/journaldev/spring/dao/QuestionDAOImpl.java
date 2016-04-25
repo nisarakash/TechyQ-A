@@ -32,7 +32,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(question);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<String> getSearchQuestion() {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -41,28 +41,31 @@ public class QuestionDAOImpl implements QuestionDAO {
 		return questionList;
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Question> getTopQuestions(List topQuestion) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Question> questionList = session.createQuery("from Question question where question.id IN :list").setParameterList("list", topQuestion).list();
+		List<Question> questionList = session.createQuery("from Question question where question.id IN :list")
+				.setParameterList("list", topQuestion).list();
 		return questionList;
 	}
 
-	@Override
 	public List<Question> latestTenQuestion() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Question> questionList = session.createQuery("from Question order by qtimestamp desc").setMaxResults(10).list();
-		
+		List<Question> questionList = session.createQuery("from Question order by qtimestamp desc").setMaxResults(10)
+				.list();
+
 		return questionList;
 	}
 
-	@Override
 	public List<Question> getTenHotQuestion() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Object[]> rows = session.createSQLQuery("select q.qid,q.qtitle,q.qquestion,q.username,count(a.qid) as num_ans from questions q inner join answer a on q.qid = a.qid GROUP BY q.qid order by num_ans desc").setMaxResults(10).list();
+		List<Object[]> rows = session
+				.createSQLQuery(
+						"select q.qid,q.qtitle,q.qquestion,q.username,count(a.qid) as num_ans from questions q inner join answer a on q.qid = a.qid GROUP BY q.qid order by num_ans desc")
+				.setMaxResults(10).list();
 		List<Question> questionList = new ArrayList<Question>();
-		for(Object[] row : rows) {
+		for (Object[] row : rows) {
 			Question q = new Question();
 			q.setQid(Integer.parseInt(row[0].toString()));
 			q.setQtitle(row[1].toString());
@@ -73,28 +76,28 @@ public class QuestionDAOImpl implements QuestionDAO {
 		return questionList;
 	}
 
-	@Override
 	public List<Question> getNumberOfAnswerInQuestion() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Object[]> rows = session.createSQLQuery("select q.qid,count(a.qid) as num_ans from questions q left join answer a on q.qid = a.qid GROUP BY q.qid order by q.timestamp desc").setMaxResults(10).list();
+		List<Object[]> rows = session
+				.createSQLQuery(
+						"select q.qid,count(a.qid) as num_ans from questions q left join answer a on q.qid = a.qid GROUP BY q.qid order by q.timestamp desc")
+				.setMaxResults(10).list();
 		List<Question> questionList = new ArrayList<Question>();
-		for(Object[] row : rows) {
+		for (Object[] row : rows) {
 			Question q = new Question();
 			q.setQid(Integer.parseInt(row[0].toString()));
 			q.setNumberOfAnswers(Integer.parseInt(row[1].toString()));
 			questionList.add(q);
 		}
-		return questionList;	}
-	
-	@Override
+		return questionList;
+	}
+
 	@SuppressWarnings("unchecked")
-	public List<Question> getUserQuestion(String username){
+	public List<Question> getUserQuestion(String username) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Question> questionList = session.createQuery("from Question where username='"+username+"'").list();
+		List<Question> questionList = session.createQuery("from Question where username='" + username + "'").list();
 		System.out.println(questionList);
 		return questionList;
 	}
 
-	
-	
 }

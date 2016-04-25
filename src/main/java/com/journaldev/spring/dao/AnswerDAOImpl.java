@@ -19,7 +19,6 @@ public class AnswerDAOImpl implements AnswerDAO{
 		this.sessionFactory = sf;
 	}
 
-	@Override
 	public QuestionAnswer getAllAnswer(int questionId) {
 		Session session = this.sessionFactory.getCurrentSession();
 		QuestionAnswer qa = new QuestionAnswer();
@@ -30,14 +29,12 @@ public class AnswerDAOImpl implements AnswerDAO{
 		return qa;
 	}
 
-	@Override
 	public boolean addAnswer(Answer answer) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(answer);
 		return true;
 	}
 
-	@Override
 	public List<String> getUniqueAnswerUserToQuestion(int questionId) {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<String> users = session.createSQLQuery("select distinct concat(a.username,':',u.email) from answer a inner join user u on a.username=u.username where a.qid="+questionId).list();

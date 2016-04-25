@@ -42,8 +42,7 @@ public class TopicListController {
 			}
 			else
 			{
-				hintString = q.getQquestion().substring(0,20);
-				hintString+="...";
+				hintString = q.getQquestion();
 			}
 			qq.setQquestion(hintString);
 			qq.setQtimestamp(q.getQtimestamp());

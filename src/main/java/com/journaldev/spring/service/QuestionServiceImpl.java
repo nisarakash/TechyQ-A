@@ -18,53 +18,45 @@ public class QuestionServiceImpl implements QuestionService {
 
 	private QuestionDAO questionDAO;
 
-	@Override
 	@Transactional
 	public ArrayList<Question> getAllQuestions() {
 		return (ArrayList<Question>) questionDAO.getAllQuestion();
 	}
 
-	@Override
 	@Transactional
 	public boolean addQuestion(Question q) {
 		questionDAO.addQuestion(q);
 		return true;
 	}
-	
+
 	@Transactional
 	public ArrayList<String> getSearchQuestion() {
 		return (ArrayList<String>) questionDAO.getSearchQuestion();
 	}
-	
+
 	@Transactional
 	public ArrayList<Question> getTopQuestions(List topQuestion) {
 		return (ArrayList<Question>) questionDAO.getTopQuestions(topQuestion);
 	}
 
-	@Override
 	@Transactional
 	public ArrayList<Question> latestTenQuestion() {
 		return (ArrayList<Question>) questionDAO.latestTenQuestion();
 	}
 
-	@Override
 	@Transactional
 	public ArrayList<Question> getTenHotQuestion() {
 		return (ArrayList<Question>) questionDAO.getTenHotQuestion();
 	}
 
-	@Override
 	@Transactional
 	public ArrayList<Question> getNumberOfAnswerInQuestion() {
 		return (ArrayList<Question>) questionDAO.getNumberOfAnswerInQuestion();
 	}
 
-	
 	@Transactional
 	public ArrayList<Question> getUserQuestion(String username) {
-		// TODO Auto-generated method stub
 		return (ArrayList<Question>) questionDAO.getUserQuestion(username);
 	}
-	
-	
+
 }

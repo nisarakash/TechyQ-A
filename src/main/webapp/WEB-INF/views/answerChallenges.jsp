@@ -23,7 +23,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<%@ include file="loginLogoHeader.jsp"%>
 	<div style="width: 100%; padding-left: 10%; padding-right: 10%;"
 		class="container">
