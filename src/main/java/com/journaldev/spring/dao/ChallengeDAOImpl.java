@@ -120,10 +120,10 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 				int hostUserPoints = hostUser.getPoints() - challengePoints;
 				int opponentUserPoints = opponentUser.getPoints() + challengePoints;
 				Query query1 = session
-						.createQuery("update User set points=" + hostUserPoints + "where username=" + c.getHostUser());
+						.createQuery("update User set points=" + hostUserPoints + "where username='" + c.getHostUser()+"'");
 				int res1 = query1.executeUpdate();
 				Query query2 = session.createQuery(
-						"update User set points=" + opponentUserPoints + "where username=" + c.getOpponentUser());
+						"update User set points=" + opponentUserPoints + "where username='" + c.getOpponentUser()+"'");
 				int res2 = query2.executeUpdate();
 			}
 
