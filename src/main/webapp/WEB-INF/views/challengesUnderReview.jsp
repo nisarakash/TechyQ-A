@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,10 +56,11 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${underReviewChallenge}" var="urc">
+			<fmt:parseDate value="${urc.startTime}" var="dateObject" pattern="yyyy-MM-dd HH:mm" />
 				<tr>
 					<td><center><a href="challengeq?challengeID=${urc.challengeID}"><strong>${urc.title}</strong></a></center></td>
 					<td style="width: 10%;">${urc.hostUser}</td>
-					<td style="width: 10%;">${urc.startTime}</td>
+					<td style="width: 10%;"><fmt:formatDate value="${dateObject }" pattern="MM/dd/yyyy hh:mm" /></td>
 					<td style="width: 10%;">${urc.points}</td>
 				</tr>
 			</c:forEach>

@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,10 +56,11 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${closeChallenge}" var="cc">
+			<fmt:parseDate value="${cc.startTime}" var="dateObject" pattern="yyyy-MM-dd HH:mm" />
 				<tr>
 					<td><center><a href="challengec?challengeID=${cc.challengeID}"><strong>${cc.title}</strong></a></center></td>
 					<td style="width: 10%;">${cc.hostUser}</td>
-					<td style="width: 10%;">${cc.startTime}</td>
+					<td style="width: 10%;"><fmt:formatDate value="${dateObject}" pattern="MM/dd/yyyy hh:mm" /></td>
 					<td style="width: 10%;">${cc.points}</td>
 				</tr>
 			</c:forEach>
