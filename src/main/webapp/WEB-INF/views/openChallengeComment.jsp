@@ -103,16 +103,6 @@
 			</c:if>
 		</div>
 		<div class="col-lg-4 centered" style="width: 24%;">
-			<center>
-				<div class="form-group">
-					<h4>
-						Time Left:&nbsp;&nbsp;&nbsp;
-						<div id="countdowntimer">
-							<span id="future_date"><span>
-						</div>
-					</h4>
-				</div>
-			</center>
 
 		</div>
 

@@ -35,24 +35,55 @@ public class ProfileController {
     	model.addAttribute("image", image);
     	model.addAttribute("width", progress);
     	model.addAttribute("user", user);
-    	ArrayList<Question>  userQuestions= questionService.getUserQuestion(username);
-    	model.addAttribute("userquestion", userQuestions);
-    	ArrayList<Challenge> userPostedChallenges = challengeService.getUserChallengesPosted(username);
-    	model.addAttribute("userPostedChallenges", userPostedChallenges);
-    	ArrayList<Challenge> userAttendedChallenges = challengeService.getUserChallengesAttended(username);
-    	model.addAttribute("userAttendedChallenges", userAttendedChallenges);
+    	
+    	
+    	
     	return "profile";
     }
  
  @RequestMapping("/userQuestion")
  public String viewQuestion(Model model, HttpServletRequest request){
-	 return null;
+	 System.out.println("userQuestion");
+	 String username = (String) request.getSession().getAttribute("username");
+	 User user = userDao.getUserDetails(username);
+ 	String image=getImage(user.getLevel());
+ 	String progress=getProgress(user.getLevel());
+ 	model.addAttribute("image", image);
+ 	model.addAttribute("width", progress);
+ 	model.addAttribute("user", user);
+	 
+	 ArrayList<Question>  userQuestions= questionService.getUserQuestion(username);
+ 	model.addAttribute("userquestion", userQuestions);
+	 return "userQuestion";
  }
  
 
  @RequestMapping("/userChallenge")
  public String viewChallenge(Model model, HttpServletRequest request){
-	 return null;
+	 String username = (String) request.getSession().getAttribute("username");
+	 User user = userDao.getUserDetails(username);
+ 	String image=getImage(user.getLevel());
+ 	String progress=getProgress(user.getLevel());
+ 	model.addAttribute("image", image);
+ 	model.addAttribute("width", progress);
+ 	model.addAttribute("user", user);
+	 ArrayList<Challenge> userPostedChallenges = challengeService.getUserChallengesPosted(username);
+ 	model.addAttribute("userPostedChallenges", userPostedChallenges);
+	 return "postedUserChallenges";
+ }
+ 
+ @RequestMapping("/userAttendedChallenge")
+ public String viewAttendedChallenge(Model model, HttpServletRequest request){
+	 String username = (String) request.getSession().getAttribute("username");
+	 User user = userDao.getUserDetails(username);
+ 	String image=getImage(user.getLevel());
+ 	String progress=getProgress(user.getLevel());
+ 	model.addAttribute("image", image);
+ 	model.addAttribute("width", progress);
+ 	model.addAttribute("user", user);
+	 ArrayList<Challenge> userAttendedChallenges = challengeService.getUserChallengesAttended(username);
+ 	model.addAttribute("userAttendedChallenges", userAttendedChallenges);
+	 return "attendedUserChallenges";
  }
  
  private String getImage(String level){

@@ -75,10 +75,10 @@
 
 <!-- Navigation Bar -->
 <ul id="myTab" class="nav nav-tabs">
-	<li><a href="home"> Q & A </a></li>
+	<li class="active"><a href="home"> Q & A </a></li>
 
-	<li class="active"><a href="#" id="myTabDrop1"
-		class="dropdown-toggle" data-toggle="dropdown"> Challenges <b
+	<li ><a href="#" id="myTabDrop1"
+		data-toggle="dropdown"> Challenges <b
 			class="caret"></b>
 	</a>
 

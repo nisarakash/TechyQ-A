@@ -127,7 +127,8 @@ public class AnswerController {
 			for (String email : userEmail) {
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			}
-
+			String hostUserEmail = (String) request.getSession().getAttribute("email");
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(hostUserEmail));
 			// Set Subject: header field
 			message.setSubject("Followup Meeting Invitation");
 			String firstname = (String) request.getSession().getAttribute("firstname");
@@ -142,7 +143,7 @@ public class AnswerController {
 		} catch (MessagingException mex) {
 			mex.printStackTrace();
 		}
-		return "answer";
+		return "redirect:home";
 
 	}
 }
