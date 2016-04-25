@@ -35,6 +35,16 @@
 						});
 	});
 </script>
+<script type="text/javascript">
+	function validate() {
+		var comment = document["CommentForm"]["comment"].value;
+		if (comment == null || comment == "") {
+			alert("Please enter a Comment!");
+			return false;
+		}
+	}
+</script>
+
 </head>
 <body>
 
@@ -95,9 +105,12 @@
 		<div class="col-lg-4 centered" style="width: 24%;">
 			<center>
 				<div class="form-group">
-					<h4>Time Left:&nbsp;&nbsp;&nbsp;<div id="countdowntimer">
+					<h4>
+						Time Left:&nbsp;&nbsp;&nbsp;
+						<div id="countdowntimer">
 							<span id="future_date"><span>
-						</div></h4>
+						</div>
+					</h4>
 				</div>
 			</center>
 
@@ -115,11 +128,12 @@
 		</div>
 
 	</div>
-	<br/><br/>
+	<br />
+	<br />
 	<div style="padding-right: 15%; padding-left: 5%;">
 		<c:if test="${sessionScope.username != null }">
-			<form:form action="${pageContext.request.contextPath}/addComment"
-				method="POST" class="form-horizontal" role="form">
+			<form action="${pageContext.request.contextPath}/addComment"
+				method="POST" class="form-horizontal" name="CommentForm" onsubmit="return validate()">
 
 				<div class="form-group">
 
@@ -128,7 +142,8 @@
 					<div class="col-sm-10">
 						<textarea class="form-control" id="answer" name="comment" rows="4"></textarea>
 					</div>
-					<input type='hidden' name='challengeid' value='${challenge.challengeID}' />
+					<input type='hidden' name='challengeid'
+						value='${challenge.challengeID}' />
 				</div>
 				<br>
 				<div class="form-group">
@@ -139,7 +154,7 @@
 
 				</div>
 
-			</form:form>
+			</form>
 		</c:if>
 
 	</div>

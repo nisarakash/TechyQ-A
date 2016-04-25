@@ -33,7 +33,7 @@
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user"></i></span> <input id="email"
 							class="form-control" name="username" value=""
-							placeholder="Email Address">
+							placeholder="Username">
 					</div>
 
 					<div class="input-group">

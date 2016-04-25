@@ -20,6 +20,18 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
+<script type="text/javascript">
+
+function validate(){
+	var ans = document["AnswerForm"]["answer1"].value;
+	if (ans==null || ans=="")
+	  {
+	  alert("Please enter a Answer!");
+	  return false;
+	  }
+	}
+</script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -36,8 +48,8 @@
 	<br />
 
 	<div style="padding-right: 15%; padding-left: 5%;">
-		<form:form action="${pageContext.request.contextPath}/addAnswertoChallenge"
-			method="POST" class="form-horizontal" role="form">
+		<form action="${pageContext.request.contextPath}/addAnswertoChallenge"
+			method="POST" class="form-horizontal" role="form" name="AnswerForm" onsubmit="return validate()">
 			
 			<div class="form-group">
 
@@ -79,7 +91,7 @@
 
 			</div>
 
-		</form:form>
+		</form>
 	</div>
 
 

@@ -20,7 +20,29 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href="<c:url value="/resources/css/globalalter.css"/>"
 	rel="stylesheet" type="text/css">
+<script type="text/javascript">
 
+function validate(){
+	var title = document["ChallengeForm"]["title"].value;
+	var desc = document["ChallengeForm"]["ques"].value;
+	var ans = document["ChallengeForm"]["ans"].value;
+	if (title==null || title=="")
+	  {
+	  alert("Please enter a Title!");
+	  return false;
+	  }
+	else if (desc==null || desc=="")
+		  {
+		  alert("Please enter Question description!");
+		  return false;
+		  }
+	else if (ans==null || ans=="")
+	  {
+	  alert("Please enter an Answer to the question!");
+	  return false;
+	  }
+}
+</script>
 
 </head>
 <body>
@@ -31,10 +53,10 @@
 	<strong><c:if test="${not empty emptyFields}">
 			<div class="msg">${emptyFields}</div>
 		</c:if></strong>
-	<form name='ChallengeForm'
+	<form name="ChallengeForm"
 		action="${pageContext.servletContext.contextPath}/addChallenge"
 		method='POST' class="form-horizontal" role="form"
-		style="margin-left: 0px; margin-right: 0px;">
+		style="margin-left: 0px; margin-right: 0px;" onsubmit="return validate()">
 
 		<div class="form-group"
 			style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
@@ -111,8 +133,7 @@
 			style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input class="btn btn-success" type="submit" value="Submit"
-					id="submit1"
-					onclick="window.location.href='${pageContext.request.contextPath}/challenges'">
+					id="submit1">
 				<input class="btn btn-cancel" type="button" value="cancel"
 					id="cancel"
 					onclick="window.location.href='${pageContext.request.contextPath}/home'">

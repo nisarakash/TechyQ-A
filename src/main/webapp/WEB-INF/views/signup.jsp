@@ -41,6 +41,60 @@
         e.preventDefault();
     }, false);
     </script>
+<script type="text/javascript">
+
+function validate(){
+	var uname = document["openform"]["username"].value;
+	var pwd = document["openform"]["password"].value;
+	var fname = document["openform"]["firstname"].value;
+	var mname = document["openform"]["middlename"].value;
+	var lname = document["openform"]["lastname"].value;
+	var email = document["openform"]["email"].value;
+	var gender = document["openform"]["gender"].value;
+	var state = document["openform"]["state"].value;
+	if (uname==null || uname=="")
+	  {
+	  alert("Please enter a Username!");
+	  return false;
+	  }
+	else if (pwd==null || pwd=="")
+	  {
+		  alert("Please enter a password!");
+		  return false;
+		  }	
+	else if (fname==null || fname=="")
+	  {
+		  alert("Please enter a firstname!");
+		  return false;
+		 }
+	else if (mname==null || mname=="")
+	  {
+		  alert("Please enter a middle name!");
+		  return false;
+		  }
+	else if (lname==null || lname=="")
+	  {
+		  alert("Please enter a last name!");
+		  return false;
+		  }
+	else if (email==null || email=="")
+	  {
+		  alert("Please enter a email id!");
+		  return false;
+		  }
+	else if (gender==null || gender=="")
+	  {
+		  alert("Please select a gender!");
+		  return false;
+		  }
+	else if (state==null || state=="")
+	  {
+		  alert("Please select a state!");
+		  return false;
+		  }
+}
+</script>  
+    
 </head>
 <body oncopy="return false" oncut="return false" onpaste="return false">
 	<header id="heading">
@@ -63,7 +117,7 @@
 	</div>
 	<form name='openform'
 		action="${pageContext.servletContext.contextPath}/Signup"
-		method='POST'>
+		method='POST' onsubmit="return validate()">
 		<h2 align="justify">SignUp Form</h2>
 		<table width="700" border="0">
 			<tbody>

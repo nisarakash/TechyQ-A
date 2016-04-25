@@ -21,9 +21,24 @@
 	rel="stylesheet" type="text/css">
 <script
 	src="resources/js/search.js"></script>
+<script type="text/javascript">
+function getImage(level){
+	var image = document.getElementByTagName("IMG")[0];
+	if(level=="Beginner"){
+		image.setAttribute("src","https://images.chesscomfiles.com/uploads/images_users/tiny_mce/pete/phpEiIX1I.jpeg"); 
+	}
+	else if(level=="Intermediate"){
+		image = "http://www.selectsoft.com/sites/default/files/Web-HorsebackIntermediate-512.png";
+	}
+	else if(level=="Expert"){
+		image = "http://globe-net.com/wp-content/uploads/expert.jpg";
+	}
+	return image;
+}
+</script>	
 <title>My Profile</title>
 </head>
-<body>
+<body onload="getImage(${user.level})">
 	<%@ include file="loginLogoHeader.jsp"%>
 	
 	<div class="container">
@@ -40,11 +55,13 @@
                             <p style="font-size: 30px;"><strong style="font-size: 30px;">Expertise: </strong>${user.level}</p>
                         </div><!--/col-->          
                         <div class="col-sm-12 col-sm-4 text-center">
-                                <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png" alt="" class="center-block img-circle img-responsive"
-                                style="width: 235px;padding-bottom: 10px;">
+                                <!-- <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png" alt="" class="center-block img-circle img-responsive"
+                                style="width: 235px;padding-bottom: 10px;"> -->
+                                 <img src="${image}" alt="" class="center-block img-circle img-responsive"
+                                style="width: 235px;padding-bottom: 10px;" >
                             	<div class="progress" style="height: 10px;">
 								  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-  											aria-valuemin="0" aria-valuemax="100" style="width:40%" >  										
+  											aria-valuemin="0" aria-valuemax="100" style="width:${width}" >  										
   									</div>
   							</div>
                         </div><!--/col-->

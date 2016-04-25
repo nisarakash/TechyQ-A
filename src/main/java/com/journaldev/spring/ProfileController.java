@@ -30,6 +30,10 @@ public class ProfileController {
     public String viewProfile(Model model, HttpServletRequest request){
     	String username = (String) request.getSession().getAttribute("username");
     	User user = userDao.getUserDetails(username);
+    	String image=getImage(user.getLevel());
+    	String progress=getProgress(user.getLevel());
+    	model.addAttribute("image", image);
+    	model.addAttribute("width", progress);
     	model.addAttribute("user", user);
     	ArrayList<Question>  userQuestions= questionService.getUserQuestion(username);
     	model.addAttribute("userquestion", userQuestions);
@@ -49,5 +53,33 @@ public class ProfileController {
  @RequestMapping("/userChallenge")
  public String viewChallenge(Model model, HttpServletRequest request){
 	 return null;
+ }
+ 
+ private String getImage(String level){
+	 String image="";
+	 if(level.equalsIgnoreCase("beginner")){
+		 image="https://wednesdaynighthop.com/wordpress/wp-content/uploads/2015/03/level-1-icon.png";
+	 }
+	 else if(level.equalsIgnoreCase("intermediate")){
+		 image="https://wednesdaynighthop.com/wordpress/wp-content/uploads/2015/03/level-2-icon.png";
+	 }
+	 else if(level.equalsIgnoreCase("expert")){
+		 image="https://wednesdaynighthop.com/wordpress/wp-content/uploads/2015/03/level-3-icon-150x150.png";
+	 }
+	 return image;
+ }
+ 
+ private String getProgress(String level){
+	 String progress="";
+	 if(level.equalsIgnoreCase("beginner")){
+		 progress="33%";
+	 }
+	 else if(level.equalsIgnoreCase("intermediate")){
+		 progress="66%";
+	 }
+	 else if(level.equalsIgnoreCase("expert")){
+		 progress="100%";
+	 }
+	 return progress;
  }
 }

@@ -25,6 +25,17 @@
 	});
 </script>
 <link rel="stylesheet" href="/resources/demos/style.css">
+<script type="text/javascript">
+
+function validate(){
+	var ans = document["AnswerForm"]["answer"].value;
+	if (ans==null || ans=="")
+	  {
+	  alert("Please enter a Answer!");
+	  return false;
+	  }
+	}
+</script>
 <title>Insert title here</title>
 <body>
 	<%@ include file="loginLogoHeader.jsp"%>
@@ -54,8 +65,8 @@
 	<br />
 	<div style="padding-right: 15%; padding-left: 5%;">
 		<c:if test="${sessionScope.username != null }">
-			<form:form action="${pageContext.request.contextPath}/addAnswer"
-				method="POST" class="form-horizontal" role="form">
+			<form action="${pageContext.request.contextPath}/addAnswer"
+				method="POST" class="form-horizontal" role="form" name="AnswerForm" onsubmit="return validate()">
 
 				<div class="form-group">
 
@@ -75,7 +86,7 @@
 
 				</div>
 
-			</form:form>
+			</form>
 		</c:if>
 
 	</div>
