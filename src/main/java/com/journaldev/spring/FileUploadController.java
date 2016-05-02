@@ -30,8 +30,11 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
+import com.journaldev.spring.dao.userDAO;
+import com.journaldev.spring.model.User;
 import com.journaldev.spring.model.Video;
 import com.journaldev.spring.model.VideoComment;
+import com.journaldev.spring.model.VideoVote;
 import com.journaldev.spring.service.VideoService;
 
 /**
@@ -43,6 +46,8 @@ public class FileUploadController {
 
 	@Autowired
 	VideoService videoService;
+	@Autowired
+	userDAO userDAO;
 
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
@@ -75,19 +80,32 @@ public class FileUploadController {
 	public String watchVideo(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") != null) {
+			String username = (String) request.getSession().getAttribute("username");
 			int videoId = Integer.parseInt((String) request.getParameter("videoId"));
-			System.out.println("videoId : " + videoId);
 			Video video = videoService.getVideoById(videoId);
-			System.out.println("Video : " + video.getVideoLocation());
 			List<VideoComment> videoComments = videoService.getCommentForVideoId(videoId);
 			int vote = videoService.getVoteForVideo(videoId);
+			boolean isAlreadyVoted = videoService.isAlreadyVoted(username,videoId);
 			model.addAttribute("video", video);
 			model.addAttribute("videoComments", videoComments);
 			model.addAttribute("votes", vote);
+			model.addAttribute("isAlreadyVoted", isAlreadyVoted);
 			return "videoWatch";
 		} else {
 			return "login";
 		}
+	}
+	
+	@RequestMapping(value = "/videoVoteUpdate", method = RequestMethod.POST)
+	public String videoVoteUpdate(ModelMap model, HttpServletRequest request) {
+		String username = (String) request.getSession().getAttribute("username");
+		int videoId = Integer.parseInt(request.getParameter("videoId"));
+		VideoVote vote = new VideoVote();
+		vote.setUpVote(1);
+		vote.setUserName(username);
+		vote.setVideoId(videoId);
+		videoService.updateVote(vote);
+		return "redirect:/watchVideo?videoId=" + videoId;
 	}
 
 	@RequestMapping(value = "/video", method = RequestMethod.GET)
@@ -96,11 +114,12 @@ public class FileUploadController {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") != null) {
 			ArrayList<Video> highRatedVideo = (ArrayList<Video>) videoService.getHighVotedVideo();
-			System.out.println(highRatedVideo);
 			ArrayList<Video> latestVideo = (ArrayList<Video>) videoService.getLatestVotedVideo();
-			System.out.println(latestVideo + "      " + latestVideo.size());
+			String username = (String) request.getSession().getAttribute("username");
+			User user = userDAO.getUserDetails(username);
 			model.addAttribute("highRatedVideo", highRatedVideo);
 			model.addAttribute("latestVideo", latestVideo);
+			model.addAttribute("points", user.getPoints());
 			return "video";
 		} else {
 			return "login";
@@ -121,13 +140,10 @@ public class FileUploadController {
 			SimpleDateFormat sdfr = new SimpleDateFormat("yyyyMMddhhmmss");
 			if (!file.isEmpty()) {
 				String[] fileDetails = file.getOriginalFilename().split("[.]");
-				System.out.println(fileDetails.length);
 				String fileExtention = null;
-				System.out.println(file.getOriginalFilename());
 				if (fileDetails.length > 1 && fileDetails[fileDetails.length - 1] != null) {
 					fileExtention = fileDetails[fileDetails.length - 1];
 				}
-				System.out.println(fileExtention);
 				if (fileExtention != null && fileExtention.equals("mp4")) {
 					isVideoFile = true;
 				}

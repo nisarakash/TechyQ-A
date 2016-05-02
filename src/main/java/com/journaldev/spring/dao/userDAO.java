@@ -27,14 +27,11 @@ public class userDAO {
 	@Transactional
 	public User getUserDetails(String username) {
 		@SuppressWarnings("unchecked")
-		Session session = sessionFactory.openSession();
-		//session.beginTransaction();
-		
+		Session session = sessionFactory.getCurrentSession();
 		Query query = session
 				.createQuery("from User where username = :username");
 		query.setParameter("username", username);
 		List<User> list = query.list();
-	
 		if (list.size()>= 1) {
 			return (User) list.get(0);
 		}
@@ -44,15 +41,12 @@ public class userDAO {
 	@Transactional
 	public User getUser(User user) {
 		@SuppressWarnings("unchecked")
-		Session session = sessionFactory.openSession();
-		//session.beginTransaction();
-		
+		Session session = sessionFactory.getCurrentSession();
 		Query query = session
 				.createQuery("from User where username = :username and password = :password");
 		query.setParameter("username", user.getUsername());
 		query.setParameter("password", user.getPassword());
 		List<User> list = query.list();
-	
 		if (list.size()>= 1) {
 			return (User) list.get(0);
 		}
@@ -63,7 +57,7 @@ public class userDAO {
 	@Transactional
 	public boolean addUser(User u) {
 		@SuppressWarnings("unchecked")
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		boolean exists = session.createQuery("from User where username= :username")
                 .setParameter("username", u.getUsername())
                 .setMaxResults(1)
@@ -71,9 +65,7 @@ public class userDAO {
          != null;
 		if(!exists)
 		{
-		session.beginTransaction();
-		session.save(u);
-		session.getTransaction().commit();
+		session.persist(u);
 		return true;
 		}
 		else

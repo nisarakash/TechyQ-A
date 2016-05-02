@@ -40,7 +40,7 @@ function getImage(level){
 </script>	
 <title>My Profile</title>
 </head>
-<body onload="getImage(${user.level})">
+<body onload="getImage(${user.level})" 	>
 	<%@ include file="loginLogoHeader.jsp"%>
 	
 	<div class="container">
@@ -57,7 +57,7 @@ function getImage(level){
                             <p style="font-size: 30px;"><strong style="font-size: 30px;">Expertise: </strong>${user.level}</p>
                         </div><!--/col-->          
                         <div class="col-sm-12 col-sm-4 text-center">
-                                <!-- <img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png" alt="" class="center-block img-circle img-responsive"
+                                 <!--<img src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png" alt="" class="center-block img-circle img-responsive"
                                 style="width: 235px;padding-bottom: 10px;"> -->
                                  <img src="${image}" alt="" class="center-block img-circle img-responsive"
                                 style="width: 235px;padding-bottom: 10px;" >
@@ -66,7 +66,7 @@ function getImage(level){
   											aria-valuemin="0" aria-valuemax="100" style="width:${width}" >  										
   									</div>
   							</div>
-                        </div><!--/col-->
+                        </div>  <!--/col-->
 
                         
                         <div class="col-sm-12 col-sm-4" style="padding-top: 180px;">                        
@@ -85,7 +85,7 @@ function getImage(level){
 						<li><a href="userQuestion"> Questions </a></li>
 						<li><a href="userChallenge">Challenges Posted</a></li>
 						<li><a href="userAttendedChallenge">Challenges Attended</a></li>
-						</ul>
+						</ul> 
 				<!-- </div> -->
 				
                     <!--  <div>

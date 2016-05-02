@@ -10,8 +10,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.journaldev.spring.model.ChallengeVote;
 import com.journaldev.spring.model.Video;
 import com.journaldev.spring.model.VideoComment;
+import com.journaldev.spring.model.VideoVote;
 
 @Repository
 public class VideoDAOImpl implements VideoDAO {
@@ -108,6 +110,23 @@ public class VideoDAOImpl implements VideoDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(comment);
 		return true;
+	}
+
+	public void updateVote(VideoVote videoVote) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(videoVote);
+	}
+
+	@Override
+	public boolean isAlreadyVoted(String username, int videoId) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<ChallengeVote> votes = session.createQuery(
+				"from VideoVote where userName='" + username
+						+ "' and videoId=" + videoId).list();
+		if (votes == null || votes.size() == 0)
+			return false;
+		else
+			return true;
 	}
 
 }

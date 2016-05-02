@@ -1,12 +1,10 @@
 package com.journaldev.spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.journaldev.spring.model.Answer;
-import com.journaldev.spring.model.QuestionAnswer;
 import com.journaldev.spring.model.Video;
 import com.journaldev.spring.model.VideoComment;
+import com.journaldev.spring.model.VideoVote;
 
 public interface VideoService {
 	
@@ -19,4 +17,6 @@ public interface VideoService {
 	public List<VideoComment> getCommentForVideoId(int videoId);
 	int getVoteForVideo(int videoId); 
 	boolean addComment(VideoComment comment);
+	public void updateVote(VideoVote videoVote);
+	public boolean isAlreadyVoted(String username, int videoId);
 }

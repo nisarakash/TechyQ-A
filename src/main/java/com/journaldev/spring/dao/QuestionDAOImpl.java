@@ -54,7 +54,6 @@ public class QuestionDAOImpl implements QuestionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Question> questionList = session.createQuery("from Question order by qtimestamp desc").setMaxResults(10)
 				.list();
-
 		return questionList;
 	}
 
@@ -96,7 +95,6 @@ public class QuestionDAOImpl implements QuestionDAO {
 	public List<Question> getUserQuestion(String username) {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Question> questionList = session.createQuery("from Question where username='" + username + "'").list();
-		System.out.println(questionList);
 		return questionList;
 	}
 

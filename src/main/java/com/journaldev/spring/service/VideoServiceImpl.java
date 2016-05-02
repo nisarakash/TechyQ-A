@@ -1,6 +1,5 @@
 package com.journaldev.spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.journaldev.spring.dao.VideoDAO;
 import com.journaldev.spring.model.Video;
 import com.journaldev.spring.model.VideoComment;
+import com.journaldev.spring.model.VideoVote;
 
 @Service
 public class VideoServiceImpl implements VideoService {
@@ -57,6 +57,16 @@ public class VideoServiceImpl implements VideoService {
 	@Transactional
 	public boolean addComment(VideoComment comment) {
 		return videoDAO.addComment(comment);
+	}
+
+	@Transactional
+	public void updateVote(VideoVote videoVote) {
+		videoDAO.updateVote(videoVote);
+	}
+
+	@Transactional
+	public boolean isAlreadyVoted(String username, int videoId) {
+		return videoDAO.isAlreadyVoted(username, videoId);
 	}
 
 }

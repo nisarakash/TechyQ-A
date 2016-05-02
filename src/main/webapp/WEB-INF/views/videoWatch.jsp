@@ -19,7 +19,7 @@
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+<script src="resources/js/search.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <title>Insert title here</title>
 <body>
@@ -129,7 +129,21 @@
 		</video> --%>
 
 
-		<p class="text-center" style="font-size: 30px;">${video.videoTitle}</p>
+		<p class="text-center" style="font-size: 30px;padding-right:5%;padding-left:5%;">${video.videoTitle}
+		
+		<c:if test="${isAlreadyVoted != true }">
+		<button style="float:right;" type="button" class="btn btn-success btn-lg"
+						onclick="videoVote(${video.videoId})" >
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> ${votes} </span>
+					</button>
+						</c:if>
+		<c:if test="${isAlreadyVoted == true }">
+		<button style="float:right;" type="button" class="btn btn-success btn-lg" disabled>
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> ${votes} </span>
+					</button>
+						</c:if>
+		
+		</p>
 		<p style="font-size: 25px;">${video.videoDescription}</p>
 		<div>
 			<div style="float: right; width: 43%;">

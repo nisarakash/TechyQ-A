@@ -151,12 +151,14 @@
 					</div>
 				</div>
 			</div>
+			<c:if test="${points >= 500 }">
 			<div class="panel panel-default" style="margin-top: 30%;">
+				
 				<div class="panel-heading">
 					<strong>Upload Files</strong>
 				</div>
 				<div class="panel-body">
-
+					
 					<form action="uploadFile" method="post"
 						enctype="multipart/form-data" name="uploadForm"
 						id="js-upload-form">
@@ -180,13 +182,18 @@
 						<button type="submit" class="btn btn-sm btn-primary"
 							id="js-upload-submit">Upload Video</button>
 					</form>
+				
 					</br>
 					<div class="panel-footing">
-						<span> Note: Upload .mp4 format vidoes only</span>
-						<span> Note: It will take several minutes to upload</span>
+						<span><b> 20 points will be deducted for uploading video</br></b></span>
+						<span> Note: Upload .mp4 format vidoes only.</span>
+						<span> It will take several minutes to upload.</span>
+						
 					</div>
 				</div>
+					
 			</div>
+			</c:if>
 		</div>
 	</div>
 </body>
