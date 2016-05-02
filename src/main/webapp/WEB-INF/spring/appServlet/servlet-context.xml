@@ -27,11 +27,12 @@
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		 <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mysql://127.9.60.2:3306/techyqanda" />
-		<beans:property name="username" value="adminz9edtHN" />
-		<beans:property name="password" value="ZmBYVGZtVQE5" />
-		<!-- <beans:property name="url" value="jdbc:mysql://localhost:3306/techq&amp;a" />
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		 <beans:property name="url" value="jdbc:mysql://127.9.60.2:3306/techyqanda" 
+			/> <beans:property name="username" value="adminz9edtHN" /> <beans:property 
+			name="password" value="ZmBYVGZtVQE5" /> 
+		<!-- <beans:property name="url"
+			value="jdbc:mysql://localhost:3306/techq&amp;a" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="root" /> -->
 	</beans:bean>
@@ -48,7 +49,8 @@
 				<beans:value>com.journaldev.spring.model.Answer</beans:value>
 				<beans:value>com.journaldev.spring.model.Challenge</beans:value>
 				<beans:value>com.journaldev.spring.model.ChallengeVote</beans:value>
-				<beans:value>com.journaldev.spring.model.ChallengeComment</beans:value>
+				<beans:value>com.journaldev.spring.model.ChallengeComment
+				</beans:value>
 				<beans:value>com.journaldev.spring.model.Video</beans:value>
 				<beans:value>com.journaldev.spring.model.VideoComment</beans:value>
 				<beans:value>com.journaldev.spring.model.VideoVote</beans:value>
@@ -116,5 +118,11 @@
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
+		<!-- setting maximum upload size -->
+		<beans:property name="maxUploadSize" value="4378904900" />
+
+	</beans:bean>
 </beans:beans>

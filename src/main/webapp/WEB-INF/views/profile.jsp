@@ -76,111 +76,15 @@ function getImage(level){
                        
               		</div><!--/row-->
 
-    	
-  <!--  <div class="row">
-    	<div class="col-md-12">
-            <div class="panel with-nav-tabs panel-default">
-                <div class="panel-heading">          -->     
+    	  
     					<ul id="myTab" class="nav nav-tabs">
 						<li><a href="userQuestion"> Questions </a></li>
 						<li><a href="userChallenge">Challenges Posted</a></li>
 						<li><a href="userAttendedChallenge">Challenges Attended</a></li>
 						</ul> 
-				<!-- </div> -->
 				
-                    <!--  <div>
-    					<div  class="tab-pane fade in active" id="tab1default">
-							<table class="table table-hover">
-								<thead id="table_head">
-									<tr>
-										<th style="width: 60%;"><center>Question</center></th>
-										<th style="width: 20%;">Posted By</th>
-										<th style="width: 20%;">Created On</th>
-									</tr>
-								</thead>
-								<tbody id="table_body">
-									<c:forEach items="${userquestion}" var="uq">
-										<tr>
-										<td><center><a href="answers?qid=${uq.qid}">${uq.qtitle}</a></center></td>
-										<td style="width: 10%;">${uq.userName}</td>
-										<td style="width: 10%;">${uq.qtimestamp}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-	 						</table>
-	 					</div>
-	 					<div  class="tab-pane fade" id="tab2default">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th style="width: 70%;"><center>Challenge</center></th>
-										<th style="width: 10%;">Posted By</th>
-										<th style="width: 10%;">Created On</th>
-										<th style="width: 10%;">Points</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${userPostedChallenges}" var="upc">
-										<tr>
-										<td><center>
-											<c:choose>
-												<c:when test="${upc.challengeStatus == 0}">	
-													<a href="challengeq?challengeID=${upc.challengeID}">${upc.title}</a>
-												</c:when>
-												<c:when test="${upc.challengeStatus == 1}">	
-													<a href="challengeq?challengeID=${upc.challengeID}">${upc.title}</a>
-												</c:when>
-												<c:otherwise>
-													<a href="challengec?challengeID=${upc.challengeID}">${upc.title}</a>
-												</c:otherwise>
-											</c:choose>
-										</center></td>
-										<td style="width: 10%;">${upc.hostUser}</td>
-										<td style="width: 10%;">${upc.startTime}</td>
-										<td style="width: 10%;">${upc.points}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-	 						</table>
-	 					</div>
-	 					<div  class="tab-pane fade" id="tab3default">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th style="width: 70%;"><center>Challenge</center></th>
-										<th style="width: 10%;">Posted By</th>
-										<th style="width: 10%;">Created On</th>
-										<th style="width: 10%;">Points</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${userAttendedChallenges}" var="uac">
-										<tr>
-										<td><center>
-											<c:choose>
-												<c:when test="${upc.challengeStatus == 1}">	
-													<a href="challengeq?challengeID=${uac.challengeID}">${uac.title}</a>
-												</c:when>
-												<c:otherwise>
-													<a href="challengec?challengeID=${uac.challengeID}">${uac.title}</a>
-												</c:otherwise>
-											</c:choose>
-										</center></td>
-										<td style="width: 10%;">${uac.hostUser}</td>
-										<td style="width: 10%;">${uac.startTime}</td>
-										<td style="width: 10%;">${uac.points}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-	 						</table>
-	 					</div>
-	 			 </div>-->
 	 			
-	 		<!-- </div>
-	 	</div>
-	 </div>
-</div> -->
-
+	 		
 </body>
 
 

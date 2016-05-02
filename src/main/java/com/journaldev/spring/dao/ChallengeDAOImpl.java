@@ -74,12 +74,8 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		java.sql.Timestamp date = new java.sql.Timestamp(
 				new java.util.Date().getTime() - ((1439 * 60) + 59) * 1000);
-		System.out.println(date);
-		// int userPoint = ((User)
-		// session.createQuery("from User where username='" + username +
-		// "'").list().get(0))
-		// .getPoints();
-		int userPoint = points;
+		//System.out.println(date);
+		 int userPoint = ((User)session.createQuery("from User where username='" + username +"'").list().get(0)).getPoints();
 		List<Challenge> listNeedtoChangeStatus;
 		if (userPoint < 199) {
 			listNeedtoChangeStatus = session
