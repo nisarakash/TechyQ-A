@@ -18,3 +18,12 @@ function incrCount(btn) {
 	$('body').append(form);
 	form.submit();
 }
+
+function videoVote(videoId) {
+	var url = 'videoVoteUpdate';
+	var form = $('<form action="' + url + 	'" method="post">'
+			+ '<input type="text" name="videoId" value="' + videoId + '" />'
+			+ '</form>');
+	$('body').append(form);
+	form.submit();
+}
